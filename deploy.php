@@ -26,8 +26,7 @@
 		$tmp = shell_exec($command);
 		// Output
 		$output .= "<span style=\"color: #6BE234;\">\$</span> <span style=\"color: #729FCF;\">{$command}\n</span>";
-    $output .= escapeshellcmd($tmp). "\n";
-		// $output .= htmlentities(trim($tmp)) . "\n";
+		$output .= htmlentities(trim($tmp)) . "\n";
 	}
 
 	// Make it pretty for manual user access (and why not?)
