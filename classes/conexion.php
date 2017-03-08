@@ -2,7 +2,7 @@
 $hostname_HovaHlt = "localhost";
 $database_HovaHlt = "directorio_v2";
 $username_HovaHlt = "root";
-$password_HovaHlt = "";
+$password_HovaHlt = "$123@56$";
 // Create connection
 $dbc = new mysqli($hostname_HovaHlt , $username_HovaHlt, $password_HovaHlt);
 // Check connection
