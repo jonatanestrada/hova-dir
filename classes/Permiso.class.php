@@ -1,5 +1,5 @@
 <?php
-include_once "conexion.php";
+include_once "../../sistema/api/v1/conexion.php";
 include_once "base.api.php";
 include_once "Paginacion.class.php";
 
