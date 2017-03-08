@@ -11,6 +11,19 @@ function __construct() {
        $this->db = 'sistemas';
    }
 
+public function add( $datos ){	
+	//$datos['observaciones'] = isset($datos['observaciones']) ? $datos['observaciones'] : 'NULL';
+	$sql = "INSERT INTO permisos_cat (id_grupo, id_pagina, permiso_key, permiso_detalles, descripcion, fecha_agregado) 
+			VALUES ('".$datos['id_grupo']."', 
+			'".$datos['id_pagina']."', 
+			'".$datos['permiso_key']."', 
+			'".$datos['item']."', 
+			'', CURRENT_TIMESTAMP);";
+//echo $sql;
+	DBO::select_db($this->db);  
+	$a = DBO::insert($sql);  
+}
+   
 public function updateDetalle( $datos ){
 	$sql = "UPDATE permisos_cat SET permiso_detalles = '".html_entity_decode($datos['permiso_detalles'])."' WHERE permiso_id = '".$datos['permiso_id']."';";
 	DBO::select_db($this->db);
