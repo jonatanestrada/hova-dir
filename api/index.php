@@ -122,6 +122,34 @@ $_POST = array_merge( $_POST, $a);
      }  
    }
    
+    private function addPermiso() {  
+		$this->checkMethod( "POST" );
+		
+		$data = $this->datosPeticion;
+		
+		$permiso = new Permiso;
+   
+     if (1 /*isset($this->datosPeticion['nombre'], $this->datosPeticion['email'], $this->datosPeticion['pwd'])*/ ) {  
+       //$nombre = $this->datosPeticion['nombre'];  
+       //$pwd = $this->datosPeticion['pwd'];  
+       //$email = $this->datosPeticion['email'];  
+       
+	   $permiso->add( $data );
+	   
+	   if ( 1 /*!$this->existeUsuario($email)*/) {  
+           //$id = $this->_conn->lastInsertId();  
+           $respuesta['estado'] = 'correcto';  
+           $respuesta['msg'] = 'usuario creado correctamente';  
+           $respuesta['data'] = $data;
+           /*$respuesta['usuario']['nombre'] = $nombre;  
+           $respuesta['usuario']['email'] = $email;  */
+           $this->mostrarRespuesta($this->convertirJson($respuesta), 200);  
+       }  
+     } else {  
+       $this->mostrarRespuesta($this->convertirJson($this->devolverError(7)), 400);  
+     }  
+   }
+   
    private function updateDetallesPermiso() {  
 		$this->checkMethod( "POST" );
 		
@@ -404,6 +432,36 @@ $_POST = array_merge( $_POST, $a);
 		   $respuesta['catClaves'] = $catClaves;
 		   $respuesta['catDescripciones'] = $catDescripciones;
 		   $respuesta['catSuperiores'] = $catSuperiores;
+           /*$respuesta['usuario']['nombre'] = $nombre;  
+           $respuesta['usuario']['email'] = $email;  */
+           $this->mostrarRespuesta($this->convertirJson($respuesta), 200);  
+       }  
+     } else {  
+       $this->mostrarRespuesta($this->convertirJson($this->devolverError(7)), 400);  
+     }  
+   }
+
+    private function getDataAddPermiso() {
+		$this->checkMethod( "GET" );
+		
+		$permiso = new Permiso;
+		
+		$data = $this->datosPeticion;
+   
+     if (1 /*isset($this->datosPeticion['nombre'], $this->datosPeticion['email'], $this->datosPeticion['pwd'])*/ ) {  
+       //$nombre = $this->datosPeticion['nombre'];  
+       //$pwd = $this->datosPeticion['pwd'];  
+       //$email = $this->datosPeticion['email'];  
+       
+	   $catGrupos = $permiso->listGroups();
+	   $catPags = $permiso->listPags();
+	   
+	   if ( 1 /*!$this->existeUsuario($email)*/) {  
+           //$id = $this->_conn->lastInsertId();  
+           $respuesta['estado'] = 'correcto';  
+           $respuesta['msg'] = 'usuario creado correctamente';
+           $respuesta['catGrupos'] = $catGrupos;
+		   $respuesta['catPags'] = $catPags;		   
            /*$respuesta['usuario']['nombre'] = $nombre;  
            $respuesta['usuario']['email'] = $email;  */
            $this->mostrarRespuesta($this->convertirJson($respuesta), 200);  
