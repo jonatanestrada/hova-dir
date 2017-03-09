@@ -20,7 +20,7 @@ app.controller('DirectorioCntroller', function($scope, $http){
 	//console.log('Baja');
 		$http({
 		  method: 'POST',
-		  url: 'api/index.php?url=darDeBaja',
+		  url: '../api/index.php?url=darDeBaja',
 		  data: $scope.formData
 	   }).then(function (response){
 			console.log(response);
@@ -43,7 +43,7 @@ app.controller('DirectorioCntroller', function($scope, $http){
 	
 		$http({
 		  method: 'POST',
-		  url: 'api/index.php?url=editarMiembro',
+		  url: '../api/index.php?url=editarMiembro',
 		  data: $scope.formData
 	   }).then(function (response){
 			console.log(response);
