@@ -30,6 +30,12 @@ public function updateDetalle( $datos ){
 	$a = DBO::doUpdate($sql);
 }
 
+public function updateKey( $datos ){
+	$sql = "UPDATE permisos_cat SET permiso_key = '".html_entity_decode($datos['permiso_key'])."' WHERE permiso_id = '".$datos['permiso_id']."';";
+	DBO::select_db($this->db);
+	$a = DBO::doUpdate($sql);
+}
+
 public function updateGroup( $datos ){
 	$sql = "UPDATE permisos_cat SET id_grupo = '".$datos['group']."' WHERE permiso_id = ".$datos['permiso_id'].";";
 	DBO::select_db($this->db);

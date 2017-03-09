@@ -61,6 +61,14 @@ app.controller('PuestoCntroller', function($scope, $http){
 		console.log($scope.formData.permiso_detalles);
 		return $http.post('api/index.php?url=updateDetallesPermiso', $scope.formData);
 	};
+	
+	$scope.updateKey = function(row) {
+		console.log('updateKey');
+		$scope.formData = row;
+		console.log($scope.formData);
+		console.log($scope.formData.permiso_detalles);
+		return $http.post('api/index.php?url=updateKeyPermiso', $scope.formData);
+	};
 
 	$scope.updateGroup = function(row) {
 		//console.log('updateGroup');
