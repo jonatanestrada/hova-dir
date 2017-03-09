@@ -141,12 +141,21 @@ public function listMiembros( $datos ){
   //DBO::select_db($this->db);
   //return Response::$data->result = DBO::getArray($sql); TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE())
 	$db = $this->db;
-	$sql = "SELECT *, REPLACE(CONCAT_WS(' ', nombre, nombre_sec, apaterno, amaterno) ,'N/A','') AS nombre2, 
-	DATE_FORMAT(fecha_nacimiento,'%m-%d-%Y') AS fecha_nacimiento, TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE()) AS edad,
-	TIMESTAMPDIFF(YEAR,fecha_ingreso,CURDATE()) AS years_a, ((TIMESTAMPDIFF(MONTH,fecha_ingreso,CURDATE())) - (TIMESTAMPDIFF(YEAR,fecha_ingreso,CURDATE()) * 12) ) AS months_a
-	FROM miembros 
-	WHERE REPLACE(CONCAT_WS(' ', nombre, nombre_sec, apaterno, amaterno) ,'N/A','') LIKE '%".$n."%'
-	ORDER BY id_miembro";
+	$sql = "SELECT *, REPLACE(CONCAT_WS(' ', m.nombre, m.nombre_sec, m.apaterno, m.amaterno) ,'N/A','') AS nombre2, 
+	DATE_FORMAT(m.fecha_nacimiento,'%m-%d-%Y') AS fecha_nacimiento, TIMESTAMPDIFF(YEAR, m.fecha_nacimiento, CURDATE()) AS edad,
+	TIMESTAMPDIFF(YEAR,m.fecha_ingreso,CURDATE()) AS years_a, ((TIMESTAMPDIFF(MONTH,m.fecha_ingreso,CURDATE())) - (TIMESTAMPDIFF(YEAR,m.fecha_ingreso,CURDATE()) * 12) ) AS months_a,
+    cp.nombre AS puesto,
+    (SELECT REPLACE(CONCAT_WS(' ', cps.nombre, '-', ms.nombre, ms.nombre_sec, ms.apaterno, ms.amaterno) ,'N/A','') FROM miembros ms 
+	
+	INNER JOIN puestos ps ON ps.id_puesto = ms.id_puesto
+     INNER JOIN cat_puestos cps ON cps.id = ps.id_nombrePuesto
+	
+	WHERE ms.id_miembro = p.id_puesto_superior) AS jefe
+	FROM miembros m
+    INNER JOIN puestos p ON p.id_puesto = m.id_puesto
+    INNER JOIN cat_puestos cp ON cp.id = p.id_nombrePuesto
+	WHERE REPLACE(CONCAT_WS(' ', m.nombre, m.nombre_sec, m.apaterno, m.amaterno) ,'N/A','') LIKE '%".$n."%'
+	ORDER BY m.id_miembro";
 	return Response::$data->result = Paginacion::getPaginacion( $sql, $db, $page, 3, 10 );
 }
 
