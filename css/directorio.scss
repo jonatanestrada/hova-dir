@@ -1,0 +1,136 @@
+body{
+  // background: #1f7088;
+  background: rgba(142, 178, 195, 0.77);
+  font-family: Roboto;
+}
+div{
+  box-sizing: border-box;
+}
+.containerCards{
+
+}
+#bigger-card{
+  position: absolute;
+  width: 600px;
+  margin-right: -600px;
+  z-index: 1;
+  height: 400px;
+  top: -105px;
+  left: -150px;
+  margin-bottom: -400px;
+  // transition: all 1s cubic-bezier(.25,.8,.25,1);
+  >.contenido_{
+    background: white;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    padding: 15px;
+  }
+}
+.card-miembro{
+  position: relative;
+  display: inline-block;
+  float: left;
+  height: 180px;
+  height: 152px;
+  width: 280px;
+  padding: 5px;
+  outline: none;
+  // padding-top: 15px;
+  // margin-top: 5px;
+
+
+  >.contenido{
+    background:  white;
+    border-radius: 4px;
+    width: 94%;
+    margin: 0 auto;
+    height: 85%;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    // overflow: hidden;
+    &.dark{
+      background: #607D8B;
+      color: rgba(255, 255, 255, 0.74);
+    }
+    &:hover{
+      box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    }
+
+    >.menu-container{
+      position: absolute;
+    }
+    .btn-menu{
+      color: rgba(0, 0, 0, 0.21);
+      transition: color 0.3s cubic-bezier(.25,.8,.25,1);
+
+      &:hover{
+        color: black;
+      }
+    }
+    >.foto{
+      // height: 70%;
+      // border-radius: 50%;
+      // overflow: hidden;
+      // width: 30%;
+      // position: relative;
+      // top: 16px;
+      // left: 14px;
+
+      /* height: 70%; */
+      /* border-radius: 50%; */
+      overflow: hidden;
+      // width: 35%;
+      width: 89px;
+      position: relative;
+      top: 37px;
+      left: 2px;
+      /* z-index: 22; */
+
+      >img{
+        // width: 50px;
+        height: 100%;
+        width: 100%;
+        // filter: blur(5px);
+        // filter: sepia(0);
+        left: -5px;
+        top: -50px;
+        transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+        &:hover{
+          // filter: sepia(10);
+        }
+      }
+    }
+
+    >.info{
+      width: calc(100% - 110px);
+      top: 11px;
+      height: 80px;
+      position: absolute;
+      right: 20px;
+      padding-top: 15px;
+      >.puesto{
+        font-size: 10pt;
+      }
+      >.birthday-img{
+        position: absolute;
+        right: -6px;
+        bottom: -35px;
+        opacity: 0.4;
+        &:hover{
+          opacity: 0.8;
+        }
+      }
+      // background: red;
+    }
+  }
+}
+
+
+
+@media handheld, only screen and (max-width: 767px){
+  .card-miembro  {
+      width: 100%;
+  }
+}
