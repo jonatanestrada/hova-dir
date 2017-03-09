@@ -1,5 +1,5 @@
         <div class="col-sm-9 col-sm-offset-1 col-md-10 col-md-offset-1 main">
-          <h1 class="page-header">Agregar usuario</h1>
+          <h1 class="page-header">Agregar empleado</h1>
 
           
 			

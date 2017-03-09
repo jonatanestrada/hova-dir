@@ -141,7 +141,7 @@ public function listMiembros( $datos ){
   //DBO::select_db($this->db);
   //return Response::$data->result = DBO::getArray($sql); TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE())
 	$db = $this->db;
-	$sql = "SELECT *, REPLACE(CONCAT_WS(' ', m.nombre, m.nombre_sec, m.apaterno, m.amaterno) ,'N/A','') AS nombre2, 
+	$sql = "SELECT m.*, REPLACE(CONCAT_WS(' ', m.nombre, m.nombre_sec, m.apaterno, m.amaterno) ,'N/A','') AS nombre2, 
 	DATE_FORMAT(m.fecha_nacimiento,'%m-%d-%Y') AS fecha_nacimiento, TIMESTAMPDIFF(YEAR, m.fecha_nacimiento, CURDATE()) AS edad,
 	TIMESTAMPDIFF(YEAR,m.fecha_ingreso,CURDATE()) AS years_a, ((TIMESTAMPDIFF(MONTH,m.fecha_ingreso,CURDATE())) - (TIMESTAMPDIFF(YEAR,m.fecha_ingreso,CURDATE()) * 12) ) AS months_a,
     cp.nombre AS puesto,
@@ -152,8 +152,8 @@ public function listMiembros( $datos ){
 	
 	WHERE ms.id_miembro = p.id_puesto_superior) AS jefe
 	FROM miembros m
-    INNER JOIN puestos p ON p.id_puesto = m.id_puesto
-    INNER JOIN cat_puestos cp ON cp.id = p.id_nombrePuesto
+    LEFT JOIN puestos p ON p.id_puesto = m.id_puesto
+    LEFT JOIN cat_puestos cp ON cp.id = p.id_nombrePuesto
 	WHERE REPLACE(CONCAT_WS(' ', m.nombre, m.nombre_sec, m.apaterno, m.amaterno) ,'N/A','') LIKE '%".$n."%'
 	ORDER BY m.id_miembro";
 	return Response::$data->result = Paginacion::getPaginacion( $sql, $db, $page, 3, 10 );

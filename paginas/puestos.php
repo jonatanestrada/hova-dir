@@ -51,7 +51,9 @@ include_once '../conf.php'
 
 
 
-		<div ng-include="'<?php echo $url_server; ?>/dev/directorio/views/directorio/puestos/puestos.html'"></div>
+		<div >
+			<?php include_once "../views/directorio/puestos/puestos.php"; ?>
+		</div>
 
 
 
