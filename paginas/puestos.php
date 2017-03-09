@@ -43,12 +43,12 @@ include_once '../conf.php'
 
   <body ng-controller='PuestoCntroller'>
 
-	<div ng-include="'<?php echo $url_server; ?>/dev/directorio/views/general/menu_sup.html'"></div>
+
 
     <div class="container-fluid">
       <div class="row">
 
-		<div ng-include="'<?php echo $url_server; ?>/dev/directorio/views/general/menu_izq.html'"></div>
+
 
 
 		<div ng-include="'<?php echo $url_server; ?>/dev/directorio/views/directorio/puestos/puestos.html'"></div>
