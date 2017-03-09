@@ -70,7 +70,7 @@ app.controller('DirectorioCntroller', function($scope, $http){
 			$http({
 			  headers: { 'Content-Type': 'application/json; charset=UTF-8'},
 			  method: 'GET',
-			  url: 'api/index.php?url=getMiembros&page='+page+'&n='+nameSearch
+			  url: '../api/index.php?url=getMiembros&page='+page+'&n='+nameSearch
 		   }).then(function (response){
 				$scope.miembros = [];
 				$scope.pages = [];		  

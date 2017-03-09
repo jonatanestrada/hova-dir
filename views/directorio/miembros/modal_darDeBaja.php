@@ -9,7 +9,9 @@
           <h4 class="modal-title">Dar de baja empleado</h4>
         </div>
         <div class="modal-body">
-		          <div ng-include="'views/directorio/miembros/form_darDeBaja.html'"></div>
+		          <div >
+					<?php include_once '../views/directorio/miembros/form_darDeBaja.php'; ?>
+				  </div>
         
       </div>
       
