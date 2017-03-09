@@ -19,7 +19,7 @@
                 <tr ng-repeat="m in miembros">
                   <td>{{m.permiso_id}}</td>
                   <td>
-						<a href="#" editable-text="m.permiso_key" onaftersave="updateKey(m)" >{{ m.permiso_key || "Vacio" }}</a>
+						{{ m.permiso_key || "Vacio" }}
 				  </td>
 				  <td>				  
 						<a href="#" editable-select="m.group" onshow="loadGroups()" e-ng-options="g.id_grupo as g.grupo for g in groups" onaftersave="updateGroup(m)" >
