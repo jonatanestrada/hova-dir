@@ -1,5 +1,5 @@
 <?php
-include 'conf.php'
+include_once '../conf.php'
 ?>
 <!DOCTYPE html>
 <html lang="en" ng-app='directorioApp'>
@@ -19,7 +19,7 @@ include 'conf.php'
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="<?php echo $url_server; ?>/lib/ie10-viewport-bug-workaround.css" rel="stylesheet">
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/css/bootstrap-datepicker.min.css" rel="stylesheet">	
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
 
 
     <!-- Custom styles for this template -->
@@ -34,25 +34,25 @@ include 'conf.php'
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-	
+
 	<script type="text/javascript" src="<?php echo $url_server; ?>/lib/angular-1.5.8/angular.min.js"></script>
 	<script type="text/javascript" src="js/directorio.js"></script>
-	
+
   </head>
 
   <body ng-controller='DirectorioCntroller'>
 
 	<div ng-include="'views/general/menu_sup.html'"></div>
-    
+
 
     <div class="container-fluid">
       <div class="row">
-	  
+
 		<div ng-include="'views/general/menu_izq.html'"></div>
-		
-		
+
+
 		<div ng-include="'views/directorio/miembros/add.html'"></div>
-        		
+
 
 
         </div>
@@ -63,11 +63,11 @@ include 'conf.php'
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="<?php echo $url_server; ?>/lib/jquery-3.1.1.min.js"></script>
-	
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.min.js"></script>
 <script>
     $('.datepick').datepicker({
-	
+
 	        format: "yyyy-mm-dd",
         autoclose: true,
         todayHighlight: true
