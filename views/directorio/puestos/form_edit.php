@@ -3,7 +3,7 @@
 				<input id="id_miembro" ng-model="formData.id_miembro" type='hidden' >
 
 				<div class="form-group">
-				  <label for="id_nombrePuesto">Cargo:</label>
+				  <label for="id_nombrePuesto">Posici&oacute;n:</label>
 				  <select class="form-control" id="id_nombrePuesto" name="id_nombrePuesto" ng-model="formData.id_nombrePuesto" ng-options="c.id as c.nombre for c in catPuestos" required="" >
 					  <option value="" >Selecciona una opci&oacute;n</option>
 				  </select>	  
@@ -13,7 +13,7 @@
 				</div>
 				
 				<div class="form-group">
-				  <label for="id_proyecto">Proyecto:</label>
+				  <label for="id_proyecto">Grupo:</label>
 				  <select class="form-control" id="id_proyecto" name="id_proyecto" ng-model="formData.id_proyecto" ng-options="p.id_proyecto as p.nombre for p in catProyectos" required="" >
 					  <option value="" >Selecciona una opci&oacute;n</option>
 				  </select>	  

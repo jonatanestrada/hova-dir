@@ -13,7 +13,7 @@ app.controller('DirectorioCntroller', function($scope, $http){
 	
 		$http({
 		  method: 'POST',
-		  url: 'api/index.php?url=AddHorario',
+		  url: '../../api/index.php?url=AddHorario',
 		  data: $scope.formData
 	   }).then(function (response){
 			console.log(response);

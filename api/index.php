@@ -433,6 +433,34 @@ $_POST = array_merge( $_POST, $a);
        $this->mostrarRespuesta($this->convertirJson($this->devolverError(7)), 400);  
      }  
    }
+
+   private function getSubordinados(  ) {
+		$this->checkMethod( "GET" );
+		
+		$Puesto = new Puesto;
+		
+		$data = $this->datosPeticion;
+   
+     if (1 /*isset($this->datosPeticion['nombre'], $this->datosPeticion['email'], $this->datosPeticion['pwd'])*/ ) {  
+       //$nombre = $this->datosPeticion['nombre'];  
+       //$pwd = $this->datosPeticion['pwd'];  
+       //$email = $this->datosPeticion['email'];  
+       
+	   $subordinados = $Puesto->listSubordinados( $data );
+	   
+	   if ( 1 /*!$this->existeUsuario($email)*/) {  
+           //$id = $this->_conn->lastInsertId();  
+           $respuesta['estado'] = 'correcto';  
+           $respuesta['msg'] = 'usuario creado correctamente';  
+           $respuesta['subordinados'] = $subordinados;
+           /*$respuesta['usuario']['nombre'] = $nombre;  
+           $respuesta['usuario']['email'] = $email;  */
+           $this->mostrarRespuesta($this->convertirJson($respuesta), 200);  
+       }  
+     } else {  
+       $this->mostrarRespuesta($this->convertirJson($this->devolverError(7)), 400);  
+     }  
+   }
    
     private function getDataAddPuesto() {
 		$this->checkMethod( "GET" );

@@ -21,8 +21,6 @@ include_once '../conf.php'
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="<?php echo $url_server; ?>/lib/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="../css/dashboard.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -69,17 +67,14 @@ include_once '../conf.php'
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.min.js"></script>
 	<script>
 		$('.datepick').datepicker({
-
-				format: "yyyy-mm-dd",
-			autoclose: true,
-			todayHighlight: true
-		});
+        format: ' “mm/dd/yyyy”'
+      });
 	</script>
 
     <script>window.jQuery || document.write('<script src="<?php echo $url_server; ?>/lib/jquery-3.1.1.min.js"><\/script>')</script>
     <script src="<?php echo $url_server; ?>/lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-    <script src="js/holder.min.js"></script>
+    <script src="/lib/holder.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="<?php echo $url_server; ?>/lib/ie10-viewport-bug-workaround.js"></script>
   </body>

@@ -42,8 +42,8 @@
 	<div class="form-group">
 		<label for="fecha_nacimiento">Fecha de nacimiento</label>
 		  
-		<div class="input-group date" data-provide="datepicker">
-			<input data-provide="datepicker" type="text" class="form-control datepick" ng-model="formData.fecha_nacimiento" name='fecha_nacimiento' id='fecha_nacimiento' placeholder='Fecha de nacimiento'>
+		<div class="input-group date" >
+			<input type="text" class="form-control datepick" ng-model="formData.fecha_nacimiento" name='fecha_nacimiento' id='fecha_nacimiento' placeholder='Fecha de nacimiento'>
 			<div class="input-group-addon">
 				<span class="glyphicon glyphicon-calendar"></span>
 			</div>
@@ -88,6 +88,7 @@
 		</div>
 	</div>
 	
-	<button type="submit" class="btn btn-default" ng-click='submitForm(saveMiembro.$valid); ' id='btnSubmit' >Submit</button>
+	<button type="button" class="btn btn-default" onclick="location.href='../'" data-dismiss="modal">Regresar</button>
+	<button type="submit" class="btn btn-default" ng-click='submitForm(saveMiembro.$valid); ' id='btnSubmit' >Guardar</button>
 	
   </form>

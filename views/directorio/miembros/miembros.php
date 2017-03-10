@@ -5,7 +5,7 @@
 			<h1 class="page-header">Empleados</h1>
 			
 			
-			<button type="button" class="btn btn-default" onclick="location.href='add_miembro.php'" data-dismiss="modal">Agregar empleado</button><br><br>
+			<button type="button" class="btn btn-default" onclick="location.href='agregar'" data-dismiss="modal">Agregar empleado</button><br><br>
 			
 			<input type="text" ng-change="load(1, nameSearch)" ng-model="nameSearch" class="form-control" placeholder="Buscar..." 
 			ng-model-options='{ debounce: 300 }'/>

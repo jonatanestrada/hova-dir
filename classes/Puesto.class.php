@@ -65,27 +65,47 @@ public function deleteMiembroPuesto( $datos ){
 public function listPuestos( $datos ){
 	$page = isset( $datos['page'] ) ? $datos['page'] : 1;
 
-  //$sql = "SELECT * FROM miembros ORDER BY id_miembro DESC LIMIT 10;";
-  //DBO::select_db($this->db);
-  //return Response::$data->result = DBO::getArray($sql);
+$n = isset( $datos['n'] ) ? $datos['n'] : '';
+	if( isset( $datos['n'] ) )
+		$n = $datos['n'] == 'undefined'  ? '' : $datos['n'];
+	
+	$n =  html_entity_decode($n);
+	
+	
 	$db = $this->db;
 	$sql = "SELECT *, cp.nombre AS nombre, py.nombre AS proyecto,
 c.nombre AS clave, d.nombre AS descripcion,
 
 (SELECT CONCAT(cs.nombre, ' - ', ms.nombre, ' ', ms.apaterno) FROM puestos ps INNER JOIN cat_puestos cs ON cs.id = ps.id_nombrePuesto INNER JOIN miembros ms ON ms.id_miembro = ps.id_miembro WHERE ps.id_puesto = p.id_puesto_superior) AS responde_a,
 
-(SELECT REPLACE(CONCAT_WS(' ', me.nombre, me.nombre_sec, me.apaterno, me.amaterno) ,'N/A','') FROM miembros me WHERE me.id_miembro = p.id_miembro) AS nombre_empleado
+(SELECT REPLACE(CONCAT_WS(' ', me.nombre, me.nombre_sec, me.apaterno, me.amaterno) ,'N/A','') FROM miembros me WHERE me.id_miembro = p.id_miembro) AS nombre_empleado,
 
+(SELECT count(*) FROM puestos psub WHERE psub.id_puesto_superior = p.id_puesto ) AS subordinado
 FROM puestos p
 INNER JOIN cat_puestos cp ON cp.id = p.id_nombrePuesto
 INNER JOIN proyectos py ON py.id_proyecto = p.id_proyecto
 INNER JOIN claves c ON c.id_clave = p.id_clave
-INNER JOIN descripciones d ON d.id_descripcion = p.id_descripcion";
-	return Response::$data->result = Paginacion::getPaginacion( $sql, $db, $page, 3, 10 );
+INNER JOIN descripciones d ON d.id_descripcion = p.id_descripcion
+
+";
+	return Response::$data->result = Paginacion::getPaginacion( $sql, $db, $page, 3, 100 );
 }
 
 public function listCatPuestos(){
   $sql = "SELECT * FROM cat_puestos";
+  DBO::select_db($this->db);
+  return DBO::getArray($sql);
+}
+
+
+public function listSubordinados( $data ){
+  $sql = "SELECT p.*, (SELECT REPLACE(CONCAT_WS(' ', m.nombre, m.nombre_sec, m.apaterno, m.amaterno) ,'N/A','') FROM miembros m WHERE m.id_miembro = p.id_miembro  ) AS nombre,
+			cp.nombre as puesto
+			FROM puestos p
+			INNER JOIN cat_puestos cp ON cp.id = p.id_nombrePuesto
+
+WHERE p.id_puesto_superior =  '".$data['id']."';";
+		
   DBO::select_db($this->db);
   return DBO::getArray($sql);
 }

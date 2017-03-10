@@ -1,4 +1,4 @@
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <div class="col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 main">
           <h1 class="page-header">Agregar Puesto</h1>
 
           
@@ -73,7 +73,8 @@
 		</div>	  
 	</div>
 	
+	<button type="button" class="btn btn-default" onclick="location.href='../'" data-dismiss="modal">Regresar</button>
+	<button type="submit" class="btn btn-default" ng-click='submitForm(saveMiembro.$valid); ' id='btnSubmit' >Guardar</button>
 	
-	<button type="submit" class="btn btn-default" ng-click='submitForm(saveMiembro.$valid); ' id='btnSubmit' >Submit</button>
 	
   </form>

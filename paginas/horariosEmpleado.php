@@ -1,5 +1,5 @@
 <?php
-include 'conf.php'
+include '../../conf.php'
 ?>
 <!DOCTYPE html>
 <html lang="en" ng-app='directorioApp'>
@@ -17,13 +17,11 @@ include 'conf.php'
     <!-- Bootstrap core CSS -->
     <link href="<?php echo $url_server; ?>/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 	
-	<link href="css/style.css" rel="stylesheet">
+	<link href="../../css/style.css" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="<?php echo $url_server; ?>/lib/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="css/dashboard.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -38,22 +36,19 @@ include 'conf.php'
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/css/bootstrap-datepicker.min.css" rel="stylesheet">	
 	
 	<script type="text/javascript" src="<?php echo $url_server; ?>/lib/angular-1.5.8/angular.min.js"></script>
-	<script type="text/javascript" src="js/horariosEmpleado.js"></script>
+	<script type="text/javascript" src="../../js/horariosEmpleado.js"></script>
 	
   </head>
 
   <body ng-controller='DirectorioCntroller'>
 
-	<div ng-include="'views/general/menu_sup.html'"></div>
-    
 
     <div class="container-fluid">
       <div class="row">
 	  
-		<div ng-include="'views/general/menu_izq.html'"></div>
 		
-		
-		<div ng-include="'views/directorio/miembros/horariosEmpleado.html'"></div>
+		<div ></div>
+		<?php include_once "../../views/directorio/miembros/horariosEmpleado.php"; ?>
         		
 
 
@@ -76,10 +71,10 @@ include 'conf.php'
 		});
 	</script>
 	
-	  <script type="text/javascript" src="js/jquery.timepicker.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="css/jquery.timepicker.css" />
-  <script src="js/datepair.js"></script>
-  <script src="js/jquery.datepair.js"></script>
+	  <script type="text/javascript" src="/lib/jquery-timepicker/jquery.timepicker.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="/lib/jquery-timepicker/jquery.timepicker.css" />
+  <script src="/lib/datepair/src/datepair.js"></script>
+  <script src="/lib/datepair/src/jquery.datepair.js"></script>
   
   
 	<script>
@@ -101,7 +96,7 @@ include 'conf.php'
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="<?php echo $url_server; ?>/lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-    <script src="js/holder.min.js"></script>
+    <script src="/lib/holder.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="<?php echo $url_server; ?>/lib/ie10-viewport-bug-workaround.js"></script>
   </body>

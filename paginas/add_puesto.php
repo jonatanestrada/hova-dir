@@ -1,5 +1,5 @@
 <?php
-include_once '../conf.php'
+include_once '../../conf.php'
 ?>
 <!DOCTYPE html>
 <html lang="en" ng-app='addPuestoApp'>
@@ -42,18 +42,13 @@ include_once '../conf.php'
 
   <body ng-controller='AddPuestoCntroller'>
 
-	<div ng-include="'views/general/menu_sup.html'"></div>
-
 
     <div class="container-fluid">
       <div class="row">
 
-		<div ng-include="'views/general/menu_izq.html'"></div>
-
-
-		<div ng-include="'views/directorio/puestos/add.html'"></div>
-
-
+		<div>
+			<?php include_once "../../views/directorio/puestos/add.php"; ?>
+		</div>
 
         </div>
       </div>

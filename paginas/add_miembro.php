@@ -12,7 +12,7 @@ include_once '../../conf.php'
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>Agregar empleado</title>
+    <title>A</title>
 
     <!-- Bootstrap core CSS -->
     <link href="<?php echo $url_server; ?>/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">

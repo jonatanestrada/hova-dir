@@ -1,6 +1,6 @@
 
 
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <div class="col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 main">
 
 			<h1 class="page-header">Horario Empleado</h1>
 			
@@ -58,7 +58,5 @@
           </div>
 	
 
-	<div ng-include="'views/directorio/miembros/modal_edit.html'"></div>
-	<div ng-include="'views/directorio/miembros/modal_darDeBaja.html'"></div>
   
   

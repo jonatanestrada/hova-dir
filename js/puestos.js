@@ -12,6 +12,10 @@ app.controller('PuestoCntroller', function($scope, $http){
 	$scope.catDescripciones = [];
 	$scope.catSuperiores = [];
 	$scope.catMiembrosSinPuesto = [];
+	$scope.subordinados = [];
+	$scope.jefeSubordinados = [];
+	
+	
 	$('#pagPuestos').addClass('active')
 	
 	
@@ -110,8 +114,30 @@ app.controller('PuestoCntroller', function($scope, $http){
 	//Cargar primera pagina de registros
 	load(1);
    
-   $scope.load= function( page ){
-		load( page );
+   $scope.load= function( page, nameSearch ){
+		load( page, nameSearch );
+   }
+   
+   $scope.viewSubordinados= function( row ){
+		//console.log('viewSubordinados');
+		console.log(row.id_puesto);
+		$scope.jefeSubordinados = row;
+		
+		var id = row.id_puesto;
+		
+		$http({
+		  method: 'GET',
+		  url: '../api/index.php?url=getSubordinados&id='+id,
+		  data: $scope.formData
+	   }).then(function (response){
+			console.log(response);
+			$scope.subordinados = response.data.subordinados;
+			$('#modalSubordinados').modal('toggle');
+	   },function (error){
+			console.log(error);
+	   });
+		
+		
    }
 
 function getMiembrosSinPuesto(){
@@ -128,14 +154,14 @@ function getMiembrosSinPuesto(){
    });
 }
    
-function load( page ){
+function load( page, nameSearch ){
 
 		$scope.noPage = page;
 		//console.log($scope.noPage);
 		if( page > 0 ){   
 			$http({
 			  method: 'GET',
-			  url: '../api/index.php?url=getPuestos&page='+page+'&n='+$scope.nameSearch
+			  url: '../api/index.php?url=getPuestos&page='+page+'&n='+nameSearch
 		   }).then(function (response){
 				$scope.miembros = [];
 				$scope.pages = [];
