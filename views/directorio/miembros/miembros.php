@@ -1,6 +1,6 @@
 
 
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <div class="col-sm-9 col-sm-offset-0 col-md-12 col-md-offset-0 main">
 
 			<h1 class="page-header">Empleados</h1>
 			
@@ -46,9 +46,15 @@
             </table>
           </div>
 	
-	<div ng-include="'views/general/paginacion.html'" style='float: right;'></div>
+	<div style='float: right;'>
+		<?php include_once '../views/general/paginacion.php'; ?>
+	</div>
 
-	<div ng-include="'views/directorio/miembros/modal_edit.html'"></div>
-	<div ng-include="'views/directorio/miembros/modal_darDeBaja.html'"></div>
+	<div >
+		<?php include_once '../views/directorio/miembros/modal_edit.php'; ?>
+	</div>
+	<div >
+		<?php include_once '../views/directorio/miembros/modal_darDeBaja.php'; ?>
+	</div>
   
   

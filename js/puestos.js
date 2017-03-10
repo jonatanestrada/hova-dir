@@ -17,7 +17,7 @@ app.controller('PuestoCntroller', function($scope, $http){
 	
 	$http({
       method: 'GET',
-      url: 'api/index.php?url=getDataAddPuesto'
+      url: '../api/index.php?url=getDataAddPuesto'
    }).then(function (response){
 		console.log(response.data);
 		$scope.catPuestos = response.data.catPuestos;
@@ -58,7 +58,7 @@ app.controller('PuestoCntroller', function($scope, $http){
 	
 		$http({
 		  method: 'POST',
-		  url: 'api/index.php?url=editarPuesto',
+		  url: '../api/index.php?url=editarPuesto',
 		  data: $scope.formData
 	   }).then(function (response){
 			//console.log(response);
@@ -76,7 +76,7 @@ app.controller('PuestoCntroller', function($scope, $http){
 		{   
 			$http({
 			  method: 'POST',
-			  url: 'api/index.php?url=addMiembroVacante',
+			  url: '../api/index.php?url=addMiembroVacante',
 			  data: $scope.formData
 		   }).then(function (response){
 				console.log(response);
@@ -94,7 +94,7 @@ app.controller('PuestoCntroller', function($scope, $http){
 	
 		$http({
 		  method: 'POST',
-		  url: 'api/index.php?url=deleteMiembroPuesto',
+		  url: '../api/index.php?url=deleteMiembroPuesto',
 		  data: $scope.formData
 	   }).then(function (response){
 			console.log(response);
@@ -118,7 +118,7 @@ function getMiembrosSinPuesto(){
 	console.log('getMiembrosSinPuesto');
 		$http({
       method: 'GET',
-      url: 'api/index.php?url=getMiembrosSinPuesto'
+      url: '../api/index.php?url=getMiembrosSinPuesto'
    }).then(function (response){
 		console.log(response.data);
 		$scope.catMiembrosSinPuesto = response.data.miembros;
@@ -135,7 +135,7 @@ function load( page ){
 		if( page > 0 ){   
 			$http({
 			  method: 'GET',
-			  url: 'api/index.php?url=getPuestos&page='+page+'&n='+$scope.nameSearch
+			  url: '../api/index.php?url=getPuestos&page='+page+'&n='+$scope.nameSearch
 		   }).then(function (response){
 				$scope.miembros = [];
 				$scope.pages = [];
