@@ -42,7 +42,7 @@ Menu::start(); //Inicia el menú
     <style media="screen">
         body{
           min-height: 100%;
-                    
+
           }
     </style>
   </head>
