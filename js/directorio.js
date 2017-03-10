@@ -18,7 +18,7 @@ app.controller('DirectorioCntroller', function($scope, $http){
 			$('#btnSubmit').attr('disabled',true);
 			$http({
 			  method: 'POST',
-			  url: 'api/index.php?url=crearUsuario',
+			  url: '../../api/index.php?url=crearUsuario',
 			  data: $scope.formData
 		   }).then(function (response){
 				console.log(response);

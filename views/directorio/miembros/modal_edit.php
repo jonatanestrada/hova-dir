@@ -9,7 +9,9 @@
           <h4 class="modal-title">Editar miembro</h4>
         </div>
         <div class="modal-body">
-		          <div ng-include="'views/directorio/miembros/form_edit.html'"></div>
+		          <div >
+					<?php include_once '../views/directorio/miembros/form_edit.php'; ?>
+				  </div>
         
       </div>
       
