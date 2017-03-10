@@ -1,7 +1,7 @@
         <div class="col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 main">
 			<h1 class="page-header">Puestos</h1>
-			
-			<button type="button" class="btn btn-default" onclick="location.href='add_puesto.php'" data-dismiss="modal">Agregar puesto</button>
+
+			<button type="button" class="btn btn-default" onclick="location.href='agregar'" data-dismiss="modal">Agregar puesto</button>
 			<div class="table-responsive">
             <table class="table table-striped">
               <thead>
@@ -27,7 +27,7 @@
                   <td>{{m.descripcion}}</td>
 				  <td>{{m.observaciones}}</td>
 				  <td>{{m.responde_a}}</td>
-				  
+
 				  <td>
 						<img src='/img/pencil.png' ng-click='edit(m)' data-toggle="modal" data-target="#myModal">
 						<img ng-show='m.vacante==0' src='/img/user_delete_2.png' ng-click='deleteMiembroVacante(m)' data-toggle="modal" data-target="#modalDelete">
@@ -38,7 +38,7 @@
               </tbody>
             </table>
           </div>
-	
+
 	<div style='float: right;'>
 		<?php include_once '../views/general/paginacion.php'; ?>
 	</div>
@@ -52,5 +52,3 @@
 	<div >
 		<?php include_once '../views/directorio/puestos/modal_deleteMiembroVacante.php'; ?>
 	</div>
-  
-  
