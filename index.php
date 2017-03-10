@@ -39,7 +39,12 @@ Menu::start(); //Inicia el menú
     <script type="text/javascript" src="js/directorio.db.js"></script>
     <script type="text/javascript" src="js/directorio.app.js"></script>
     <script type="text/javascript" src="js/directorio.controller.js"></script>
-
+    <style media="screen">
+        body{
+          min-height: 100%;
+                    
+          }
+    </style>
   </head>
   <body ng-app="Directorio" ng-controller="directorioController as ctrl">
     <div  class="grid containerCards" ng-cloak>
@@ -182,15 +187,10 @@ Menu::start(); //Inicia el menú
 
   </div>
 
-  <div id="bigger-card">
-    <div class="contenido_">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </div>
-  </div>
+
   </body>
 </html>
 <?php
 /**** Aquí va todo el contenido, recomendable usar include_once ****/
-include_once $_SERVER['DOCUMENT_ROOT']."/dev/directorio/paginas/miembros.php";
 Menu::end(); // Esto despues del contenido
 ?>
