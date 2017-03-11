@@ -1,6 +1,4 @@
-<?php
-include_once '../conf.php'
-?>
+<?php include_once '../conf.php'; ?>
 <!-- Cambio de prueba... -->
 <!DOCTYPE html>
 <html lang="en" ng-app='directorioApp'>

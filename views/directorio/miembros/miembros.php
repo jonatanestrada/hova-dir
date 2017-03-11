@@ -3,13 +3,12 @@
         <div class="col-sm-9 col-sm-offset-0 col-md-12 col-md-offset-0 main">
 
 			<h1 class="page-header">Empleados</h1>
+
 			
-			
-			<button type="button" class="btn btn-default" onclick="location.href='agregar'" data-dismiss="modal">Agregar empleado</button><br><br>
-			
-			<input type="text" ng-change="load(1, nameSearch)" ng-model="nameSearch" class="form-control" placeholder="Buscar..." 
-			ng-model-options='{ debounce: 300 }'/>
-			
+			<button type="button" class="btn btn-default" onclick="location.href='agregar/'" data-dismiss="modal">Agregar empleado</button><br><br>
+
+			<input type="text" ng-change="load(1, nameSearch)" ng-model="nameSearch" class="form-control" placeholder="Buscar..." ng-model-options='{ debounce: 300 }'/>
+
 			<div class="table-responsive">
             <table class="table table-striped">
               <thead>
@@ -18,7 +17,7 @@
                   <th>Nombre</th>
 				  <th>Puesto</th>
 				  <th>Respode a</th>
-				  <th>Edad</th>				  
+				  <th>Edad</th>
 				  <th>Antigüedad</th>
                   <th>Tel</th>
                   <th>Email</th>
@@ -38,14 +37,14 @@
 				  <td>
 						<img ng-show='m.active==1' src='/img/pencil.png' ng-click='edit(m)' data-toggle="modal" data-target="#myModal">
 						<img ng-show='m.active==1' src='/img/clock.png' ng-click='' data-toggle="modal" data-target="#modalHorarios">
-						<img ng-show='m.active==1' src='/img/user_delete_2.png' ng-click='darDeBajaEmpleado(m)' data-toggle="modal" data-target="#modalDarDeBaja">						
+						<img ng-show='m.active==1' src='/img/user_delete_2.png' ng-click='darDeBajaEmpleado(m)' data-toggle="modal" data-target="#modalDarDeBaja">
 				  </td>
                 </tr>
 
               </tbody>
             </table>
           </div>
-	
+
 	<div style='float: right;'>
 		<?php include_once '../views/general/paginacion.php'; ?>
 	</div>
@@ -56,5 +55,3 @@
 	<div >
 		<?php include_once '../views/directorio/miembros/modal_darDeBaja.php'; ?>
 	</div>
-  
-  
