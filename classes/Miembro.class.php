@@ -40,35 +40,43 @@ public function addHorario( $datos ){
 //var_dump($datos);
 $t_start = $datos['t_start'];
 $t_end = $datos['t_end'];
-$l = isset($datos['lunes']) ? 1 : 0;
-$ma = isset($datos['martes']) ? 2 : 0;
-$mi = isset($datos['miercoles']) ? 3 : 0;
-$j = isset($datos['jueves']) ? 4 : 0;
-$v = isset($datos['viernes']) ? 5 : 0;
-$s = isset($datos['sabado']) ? 6 : 0;
+$l = isset($datos['lunes']) && $datos['lunes'] != '' ? 1 : 0;
+$ma = isset($datos['martes']) && $datos['martes'] != '' ? 2 : 0;
+$mi = isset($datos['miercoles']) && $datos['miercoles'] != '' ? 3 : 0;
+$j = isset($datos['jueves']) && $datos['jueves'] != '' ? 4 : 0;
+$v = isset($datos['viernes']) && $datos['viernes'] != '' ? 5 : 0;
+$s = isset($datos['sabado']) && $datos['sabado'] != '' ? 6 : 0;
+$id_miembro = $datos['id_miembro'];
+$id_descripcion = $datos['id_descripcion'];
 
-$this->addDaytoHorario( $l, $t_start, $t_end );
-$this->addDaytoHorario( $ma, $t_start, $t_end  );
-$this->addDaytoHorario( $mi, $t_start, $t_end  );
-$this->addDaytoHorario( $j, $t_start, $t_end  );
-$this->addDaytoHorario( $v, $t_start, $t_end  );
-$this->addDaytoHorario( $s, $t_start, $t_end  );
+$this->addDaytoHorario( $id_miembro, $id_descripcion, $l, $t_start, $t_end );
+$this->addDaytoHorario( $id_miembro, $id_descripcion, $ma, $t_start, $t_end  );
+$this->addDaytoHorario( $id_miembro, $id_descripcion, $mi, $t_start, $t_end  );
+$this->addDaytoHorario( $id_miembro, $id_descripcion, $j, $t_start, $t_end  );
+$this->addDaytoHorario( $id_miembro, $id_descripcion, $v, $t_start, $t_end  );
+$this->addDaytoHorario( $id_miembro, $id_descripcion, $s, $t_start, $t_end  );
 //$this->addDaytoHorario( $datos['domingo'], $t_start, $t_end  );
 	
 }
 
-private function addDaytoHorario( $day, $t_start, $t_end ){
+private function addDaytoHorario( $id_miembro, $id_descripcion, $day, $t_start, $t_end ){
 	if( isset( $day ) )
 		if( $day != 0 )
-			$this->addDayDB( $day, $t_start, $t_end );
+			$this->addDayDB( $id_miembro, $id_descripcion, $day, $t_start, $t_end );
 	return false;
 }
 
-private function addDayDB( $day, $t_start, $t_end ){
-	echo $sql = "INSERT INTO horarios ( dia, id_descripcion, hora_inicio, hora_fin ) VALUES ( '".$day."', '1', '".$t_start."', '".$t_end."');";
+private function addDayDB( $id_miembro, $id_descripcion, $day, $t_start, $t_end ){
+	$sql = "INSERT INTO horarios ( id_miembro, dia, id_descripcion, hora_inicio, hora_fin ) VALUES ( '".$id_miembro."','".$day."', '".$id_descripcion."', '".$t_start."', '".$t_end."');";
 	DBO::select_db($this->db);
 
 	$a = DBO::insert($sql);
+}
+
+public function getHorarioMiembro( $datos, $dia ){
+	$sql = "SELECT * FROM horarios h INNER JOIN descripciones d ON d.id_descripcion = h.id_descripcion WHERE h.id_miembro = '".$datos['id']."' AND h.dia = '".$dia."'";
+	DBO::select_db($this->db);
+	return DBO::getArray($sql);
 }
 
 public function addPuestoMiembro( $datos ){
@@ -84,6 +92,13 @@ public function deletePuestoPuesto( $datos ){
 
 	DBO::select_db($this->db);
 	$a = DBO::doUpdate($sql);
+}
+
+public function deleteHorario( $datos ){
+	$sql = "DELETE FROM horarios WHERE id_horario = '".$datos['id_horario']."';";
+
+	DBO::select_db($this->db);
+	$a = DBO::delete($sql);
 }
 
 public function darDeBaja( $datos ){
@@ -144,7 +159,7 @@ public function listMiembros( $datos ){
 	$sql = "SELECT m.*, REPLACE(CONCAT_WS(' ', m.nombre, m.nombre_sec, m.apaterno, m.amaterno) ,'N/A','') AS nombre2, 
 	DATE_FORMAT(m.fecha_nacimiento,'%m-%d-%Y') AS fecha_nacimiento, TIMESTAMPDIFF(YEAR, m.fecha_nacimiento, CURDATE()) AS edad,
 	TIMESTAMPDIFF(YEAR,m.fecha_ingreso,CURDATE()) AS years_a, ((TIMESTAMPDIFF(MONTH,m.fecha_ingreso,CURDATE())) - (TIMESTAMPDIFF(YEAR,m.fecha_ingreso,CURDATE()) * 12) ) AS months_a,
-    cp.nombre AS puesto,
+    cp.nombre AS puesto, p.id_descripcion,
     (SELECT REPLACE(CONCAT_WS(' ', cps.nombre, '-', ms.nombre, ms.nombre_sec, ms.apaterno, ms.amaterno) ,'N/A','') FROM miembros ms 
 	
 	INNER JOIN puestos ps ON ps.id_puesto = ms.id_puesto

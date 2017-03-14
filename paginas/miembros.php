@@ -1,4 +1,6 @@
-<?php include_once '../conf.php'; ?>
+<?php
+include_once '../conf.php'
+?>
 <!-- Cambio de prueba... -->
 <!DOCTYPE html>
 <html lang="en" ng-app='directorioApp'>
@@ -72,6 +74,31 @@
 				format: "yyyy-mm-dd",
 			autoclose: true,
 			todayHighlight: true
+		});
+	</script>
+	
+	<script type="text/javascript" src="/lib/jquery-timepicker/jquery.timepicker.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="/lib/jquery-timepicker/jquery.timepicker.css" />
+
+	<script src="/lib/datepair/src/datepair.js"></script>
+	<script src="/lib/datepair/src/jquery.datepair.js"></script>
+	<link rel="stylesheet" href="/lib/bootstrap-select.css">
+	<script src="/lib/bootstrap-select.js"></script>
+  
+  
+	<script>
+		$(document).ready(function(){
+			var dtr = [];
+
+			//dtr.push(['1pm', '3:01pm']);
+			$('#datepairExample .time').timepicker({
+			'showDuration': true,
+			'timeFormat': 'g:ia',
+			//'scrollDefaultTime': '9:00pm',
+			'disableTimeRanges': dtr
+			});
+
+			$('#datepairExample').datepair();
 		});
 	</script>
 

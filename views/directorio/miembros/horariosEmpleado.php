@@ -18,16 +18,28 @@
 			</p>
 			</div>
 
-			<div class="form-group">			
+
+			<div class="col-sm-2">
 				<label class="checkbox-inline"><input type="checkbox" value="1" ng-model="formData.lunes" name='lunes'>Lunes</label>
+			</div>
+			<div class="col-sm-2">
 				<label class="checkbox-inline"><input type="checkbox" value="2" ng-model="formData.martes" name='martes'>Martes</label>
+			</div>
+			<div class="col-sm-2">
 				<label class="checkbox-inline"><input type="checkbox" value="3" ng-model="formData.miercoles" name='miercoles'>Miercoles</label>
+			</div>
+			<div class="col-sm-2">
 				<label class="checkbox-inline"><input type="checkbox" value="4" ng-model="formData.jueves" name='jueves'>Jueves</label>
+			</div>
+			<div class="col-sm-2">
 				<label class="checkbox-inline"><input type="checkbox" value="5" ng-model="formData.viernes" name='viernes'>Viernes</label>
+			</div>
+			<div class="col-sm-2">
 				<label class="checkbox-inline"><input type="checkbox" value="6" ng-model="formData.sabado" name='sabado'>Sabado</label>
 			</div>
+				
+			<button type="button" class="btn btn-default" ng-click="submitFormAddHorario()" data-dismiss="modal">Agregar empleado</button><br><br>			
 			
-			<button type="button" class="btn btn-default" ng-click="submitFormAddHorario()" data-dismiss="modal">Agregar empleado</button><br><br>
 		</form>
 			
 			<div class="table-responsive">

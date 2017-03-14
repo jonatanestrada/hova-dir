@@ -4,7 +4,11 @@ app.controller('DirectorioCntroller', function($scope, $http){
 	$scope.formData = {};
 	$scope.pages = 0;
 	$scope.noPage = 0;
+	$scope.selectedDesc = 0;
 	$scope.nameSearch = '';
+	$scope.horarios = [];
+	$scope.ubicaciones = [];
+	$scope.catDescripciones = [];
 	
 	$scope.edit = function( row ){
 		//console.log(row);
@@ -15,6 +19,89 @@ app.controller('DirectorioCntroller', function($scope, $http){
 		//console.log(row);
 		$scope.formData = row;
 	};
+	
+	$scope.horariosMiembro = function( row ){
+		//console.log(row);
+		$('#t_start').val('');
+		$('#t_end').val('');
+		$scope.formData.lunes = '';
+		$scope.formData.martes = '';
+		$scope.formData.miercoles = '';
+		$scope.formData.jueves = '';
+		$scope.formData.viernes = '';
+		$scope.formData.sabado = '';
+		
+		$scope.formData = row;
+		getHorarioMiembro( row );		
+	};
+	
+	$scope.eliminar = function( row ){
+		var txt;
+		var r = confirm("\u00BF Estas seguro que deseas borrar ?");
+		if (r == true) {
+			deleteHorario( row );
+		} else {
+			txt = "You pressed Cancel!";
+		}
+		//console.log(txt);
+	}
+	
+	function deleteHorario( row ){
+		//console.log(row);
+		//console.log('Delete horario');
+		$http({
+		  method: 'POST',
+		  url: '../api/index.php?url=deleteHorarioMiembro',
+		  data: row
+	   }).then(function (response){
+			//console.log(response);
+			getHorarioMiembro( row );
+			alert( 'Se borro el horario exitosamente.' )
+			
+	   },function (error){
+			console.log(error);
+	   });
+	}
+	
+	$scope.submitFormAddHorario = function(){
+		//console.log('Add horario');
+		//console.log($scope.formData);
+				
+		$scope.formData.t_start = $('#t_start').val();
+		$scope.formData.t_end = $('#t_end').val();
+		
+			$http({
+			  method: 'POST',
+			  url: '../api/index.php?url=AddHorario',
+			  data: $scope.formData
+		   }).then(function (response){
+				console.log(response);
+				getHorarioMiembro( $scope.formData );
+				//$scope.formData = {};
+				clearFormHorario();
+				//console.log('Entro');
+				
+				
+				
+				alert( 'Se agrego el horario exitosamente.' )
+				//$scope.personas.push($scope.newPersona);
+				//$scope.newPersona = {};
+				
+		   },function (error){
+				console.log(error);
+		   });
+	}
+	
+	function clearFormHorario(){
+		$scope.formData.lunes = '';
+		$scope.formData.martes = '';
+		$scope.formData.miercoles = '';
+		$scope.formData.jueves = '';
+		$scope.formData.viernes = '';
+		$scope.formData.sabado = '';
+		$scope.formData.t_start = '';
+		$scope.formData.t_end = '';
+	}
 	
 	$scope.submitFormDarDeBaja = function(){
 	//console.log('Baja');
@@ -59,7 +146,35 @@ app.controller('DirectorioCntroller', function($scope, $http){
 	
 	
 	load( 1, '' );
-   
+	
+	function getHorarioMiembro( row ){
+	console.log(row.id_miembro);
+			$http({
+			  headers: { 'Content-Type': 'application/json; charset=UTF-8'},
+			  method: 'GET',
+			  url: '../api/index.php?url=getHorarioMiembro&id='+row.id_miembro
+		   }).then(function (response){
+		   console.log('Horario');
+				//$scope.pages = [];
+				$scope.horarios.Lunes = response.data.horarioLunes;
+				$scope.horarios.Martes = response.data.horarioMartes;
+				$scope.horarios.Miercoles = response.data.horarioMiercoles;
+				$scope.horarios.Jueves = response.data.horarioJueves;
+				$scope.horarios.Viernes = response.data.horarioViernes;
+				$scope.horarios.Sabado = response.data.horarioSabado;
+				$scope.selectedDesc = row.id_descripcion;
+				$scope.catDescripciones = response.data.catDescripciones;
+				
+
+				//console.log('Horario');
+				//console.log($scope.horarios);
+				//$scope.miembros = response.data.miembros.registros;
+				
+		   },function (error){
+
+		   });
+	}
+	
    $scope.load= function( page, nameSearch ){ 
 		load( page, nameSearch );
    }

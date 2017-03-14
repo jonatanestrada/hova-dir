@@ -527,6 +527,47 @@ $_POST = array_merge( $_POST, $a);
        $this->mostrarRespuesta($this->convertirJson($this->devolverError(7)), 400);  
      }  
    }
+
+    private function getHorarioMiembro() {
+		$this->checkMethod( "GET" );
+		
+		$miembro = new Miembro;
+		$puesto = new Puesto;
+		
+		$data = $this->datosPeticion;
+   
+     if (1 /*isset($this->datosPeticion['nombre'], $this->datosPeticion['email'], $this->datosPeticion['pwd'])*/ ) {  
+       //$nombre = $this->datosPeticion['nombre'];  
+       //$pwd = $this->datosPeticion['pwd'];  
+       //$email = $this->datosPeticion['email'];  
+       
+	   $horarioLunes = $miembro->getHorarioMiembro( $data, 1 );
+	   $horarioMartes = $miembro->getHorarioMiembro( $data, 2 );
+	   $horarioMiercoles = $miembro->getHorarioMiembro( $data, 3 );
+	   $horarioJueves = $miembro->getHorarioMiembro( $data, 4 );
+	   $horarioViernes = $miembro->getHorarioMiembro( $data, 5 );
+	   $horarioSabado = $miembro->getHorarioMiembro( $data, 6 );
+	   $catDescripciones = $puesto->listCatDescripciones();
+	   
+	   if ( 1 /*!$this->existeUsuario($email)*/) {  
+           //$id = $this->_conn->lastInsertId();  
+           $respuesta['estado'] = 'correcto';  
+           $respuesta['msg'] = 'usuario creado correctamente';
+           $respuesta['horarioLunes'] = $horarioLunes;
+		   $respuesta['horarioMartes'] = $horarioMartes;
+		   $respuesta['horarioMiercoles'] = $horarioMiercoles;
+		   $respuesta['horarioJueves'] = $horarioJueves;
+		   $respuesta['horarioViernes'] = $horarioViernes;
+		   $respuesta['horarioSabado'] = $horarioSabado;
+		   $respuesta['catDescripciones'] = $catDescripciones;
+           /*$respuesta['usuario']['nombre'] = $nombre;  
+           $respuesta['usuario']['email'] = $email;  */
+           $this->mostrarRespuesta($this->convertirJson($respuesta), 200);  
+       }  
+     } else {  
+       $this->mostrarRespuesta($this->convertirJson($this->devolverError(7)), 400);  
+     }  
+   }
    
    private function editarMiembro() {
 		$this->checkMethod( "POST" );
@@ -656,6 +697,30 @@ $_POST = array_merge( $_POST, $a);
 
            $respuesta['estado'] = 'correcto';  
            $respuesta['msg'] = 'Se dio de baja correctamente';  
+           //$respuesta['miembros'] = $puestos;
+
+           $this->mostrarRespuesta($this->convertirJson($respuesta), 200);  
+       }  
+     } else {  
+       $this->mostrarRespuesta($this->convertirJson($this->devolverError(7)), 400);  
+     }  
+   }
+   
+   private function deleteHorarioMiembro() {
+		$this->checkMethod( "POST" );
+		
+		$data = $this->datosPeticion;
+		$miembro = new Miembro;
+   
+     if (1 /*isset($this->datosPeticion['nombre'], $this->datosPeticion['email'] )*/ ) {  
+       //$nombre = $this->datosPeticion['nombre'];  
+       
+	   $m = $miembro->deleteHorario( $data );
+	   
+	   if ( 1 /*!$this->existeUsuario($email)*/) {  
+
+           $respuesta['estado'] = 'correcto';  
+           $respuesta['msg'] = 'Se borro horario correctamente';  
            //$respuesta['miembros'] = $puestos;
 
            $this->mostrarRespuesta($this->convertirJson($respuesta), 200);  
