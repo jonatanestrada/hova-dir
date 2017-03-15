@@ -64,9 +64,7 @@
 		<?php include_once '../views/general/paginacion.php'; ?>
 	</div>
 
-<?php 
-Menu::end();
-?>	
+<?php Menu::end(); ?>	
 	<div  >
 		<?php include_once '../views/directorio/puestos/modal_subordinados.php'; ?>
 	</div>

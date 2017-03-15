@@ -52,6 +52,8 @@
 		<?php include_once '../views/general/paginacion.php'; ?>
 	</div>
 
+<?php Menu::end(); ?>
+	
 	<div >
 		<?php include_once '../views/directorio/miembros/modal_edit.php'; ?>
 	</div>
