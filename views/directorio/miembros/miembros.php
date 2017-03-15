@@ -6,7 +6,7 @@
 			
 			
 			<button type="button" class="btn btn-default" onclick="location.href='agregar'" data-dismiss="modal">Agregar empleado</button>
-			<a href='../paginas/export_empleados.php'>Descargar</a>
+			<a href='../paginas/export_empleados.php' style='float:right'><img src='/img/excel.png'></a>
 			<br><br>
 			
 			<input type="text" ng-change="load(1, nameSearch)" ng-model="nameSearch" class="form-control" placeholder="Buscar..." 
