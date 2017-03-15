@@ -144,7 +144,7 @@ public function listMiembrosSinPuesto(){
 	return DBO::getArray($sql);
 }
 
-public function listMiembros( $datos ){
+public function listMiembros( $datos, $paginacion = 1 ){
 	$page = isset( $datos['page'] ) ? $datos['page'] : 1;
 	$n = isset( $datos['n'] ) ? $datos['n'] : '';
 	if( isset( $datos['n'] ) )
@@ -171,7 +171,13 @@ public function listMiembros( $datos ){
     LEFT JOIN cat_puestos cp ON cp.id = p.id_nombrePuesto
 	WHERE REPLACE(CONCAT_WS(' ', m.nombre, m.nombre_sec, m.apaterno, m.amaterno) ,'N/A','') LIKE '%".$n."%'
 	ORDER BY m.id_miembro";
-	return Response::$data->result = Paginacion::getPaginacion( $sql, $db, $page, 3, 10 );
+	if( $paginacion == 1 )
+		return Response::$data->result = Paginacion::getPaginacion( $sql, $db, $page, 3, 100 );
+	else
+		{
+			DBO::select_db($this->db);
+			return DBO::getArray($sql);
+		}
 }
 
 }
