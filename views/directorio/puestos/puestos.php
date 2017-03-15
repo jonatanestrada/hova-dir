@@ -3,8 +3,17 @@
 			
 			<button type="button" class="btn btn-default" onclick="location.href='agregar'" data-dismiss="modal">Agregar puesto</button><br><br>
 			
-			<input type="text" ng-change="load(1, nameSearch)" ng-model="nameSearch" class="form-control" placeholder="Buscar..." 
+			<input type="hidden" ng-change="load(1, nameSearch)" ng-model="nameSearch" class="form-control" placeholder="Buscar..." 
 			ng-model-options='{ debounce: 300 }'/>
+			
+			<div class="form-group">
+			  <label for="sel1">Ver:</label>
+			  
+			  <select id='ver' class="form-control"  ng-change="load(1, nameSearch, vacantes)" ng-model="vacantes" >
+				<option value='0' >Todos</option>
+				<option value='1'>Vacantes</option>
+			  </select>
+			</div>
 			
 			<div class="table-responsive">
             <table class="table table-striped">

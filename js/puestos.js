@@ -4,6 +4,7 @@ app.controller('PuestoCntroller', function($scope, $http){
 	$scope.formData = {};
 	$scope.pages = 0;
 	$scope.noPage = 0;
+	$scope.vacantes = 0;
 	$scope.nameSearch = '';
 	
 	$scope.catPuestos = [];
@@ -114,8 +115,8 @@ app.controller('PuestoCntroller', function($scope, $http){
 	//Cargar primera pagina de registros
 	load(1);
    
-   $scope.load= function( page, nameSearch ){
-		load( page, nameSearch );
+   $scope.load= function( page, nameSearch, vacantes = 0 ){
+		load( page, nameSearch, vacantes );
    }
    
    $scope.viewSubordinados= function( row ){
@@ -154,14 +155,14 @@ function getMiembrosSinPuesto(){
    });
 }
    
-function load( page, nameSearch ){
+function load( page, nameSearch, vacantes = 0 ){
 
 		$scope.noPage = page;
 		//console.log($scope.noPage);
 		if( page > 0 ){   
 			$http({
 			  method: 'GET',
-			  url: '../api/index.php?url=getPuestos&page='+page+'&n='+nameSearch
+			  url: '../api/index.php?url=getPuestos&page='+page+'&n='+nameSearch+'&vacantes='+vacantes
 		   }).then(function (response){
 				$scope.miembros = [];
 				$scope.pages = [];

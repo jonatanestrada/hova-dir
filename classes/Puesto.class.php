@@ -68,9 +68,17 @@ public function listPuestos( $datos ){
 $n = isset( $datos['n'] ) ? $datos['n'] : '';
 	if( isset( $datos['n'] ) )
 		$n = $datos['n'] == 'undefined'  ? '' : $datos['n'];
+
+$v = isset( $datos['vacantes'] ) ? $datos['vacantes'] : '';
+	if( isset( $datos['vacantes'] ) )
+		$n = $datos['vacantes'] == 'undefined'  ? '' : $datos['vacantes'];
 	
 	$n =  html_entity_decode($n);
 	
+	if( $v == 1 )
+		$vacante = ' AND vacante = 1 ';
+	else
+		$vacante = '';
 	
 	$db = $this->db;
 	$sql = "SELECT *, cp.nombre AS nombre, py.nombre AS proyecto,
@@ -86,7 +94,7 @@ INNER JOIN cat_puestos cp ON cp.id = p.id_nombrePuesto
 INNER JOIN proyectos py ON py.id_proyecto = p.id_proyecto
 INNER JOIN claves c ON c.id_clave = p.id_clave
 INNER JOIN descripciones d ON d.id_descripcion = p.id_descripcion
-
+WHERE 1 $vacante
 ";
 	return Response::$data->result = Paginacion::getPaginacion( $sql, $db, $page, 3, 100 );
 }
