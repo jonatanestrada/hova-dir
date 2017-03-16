@@ -73,6 +73,150 @@ private function addDayDB( $id_miembro, $id_descripcion, $day, $t_start, $t_end 
 	$a = DBO::insert($sql);
 }
 
+public function altaPortal( $data ){
+	/*$sql = "INSERT INTO horarios ( id_miembro, dia, id_descripcion, hora_inicio, hora_fin ) VALUES ( '".$id_miembro."','".$day."', '".$id_descripcion."', '".$t_start."', '".$t_end."');";
+	DBO::select_db($this->db);
+	
+	$a = DBO::insert($sql);*/
+	
+	//var_dump($data);
+	
+	if( $UserIdForEmpleado = $this->existUserIdForEmpleado( $data['id_miembro'] ) ){
+		$data['usu_id'] = $UserIdForEmpleado;
+		if( $this->existUserPortal( $data['usu_id'] ) )
+			$this->updatePassUserPortal( $data['usu_id'], $data['password'] );
+		else
+			$this->addUSerDBPortal( $data );
+		$user_id = $this->getLastUserIdMiembros() + 1;
+		$this->setAccessPortal( $data['id_miembro'], $user_id, 0 );
+		//echo 'Existe';
+	}
+	else{
+		//echo 'No Existe';
+		$data['usu_id'] = $this->getLastUserIdMiembros() + 1;
+		$oldID = $this->addUSerDBPortal( $data );
+		$user_id = $data['usu_id'];
+		$this->setAccessPortal( $data['id_miembro'], $user_id );
+	}
+	
+	
+	
+	$id_sistema = 1;
+	$id_miembro = $data['id_miembro'];
+	
+	//$this->logAltaSistema( $id_sistema, $id_miembro );
+}
+	private function setAccessPortal( $id_miembro, $user_id, $setUser = 1 ){
+		if( $setUser )
+			$set_user_id = ", user_id = '".$user_id."'";
+		else
+			$set_user_id = '';
+	
+		$sql = "UPDATE miembros SET accesoPortal = '1' $set_user_id WHERE id_miembro = '".$id_miembro."';";
+
+		DBO::select_db($this->db);
+		$a = DBO::doUpdate($sql);
+	}
+	
+	private function getLastUserIdMiembros(){
+		$sql = 'SELECT Max(user_id) AS maxId FROM miembros';
+		DBO::select_db($this->db);
+		$row = DBO::get($sql);
+		$lastUserIdMiembros = $row->maxId;
+		return $lastUserIdMiembros;
+	}
+	
+	private function updateIDUserPortal( $oldID, $newID ){	
+		$sql = "UPDATE usuario SET usu_id = '".$oldID."' WHERE usu_id = '".$newID."';";
+
+		DBO::select_db($this->db);
+		$a = DBO::doUpdate($sql);
+	}
+	
+	private function existUserIdForEmpleado( $id_miembro ){
+		$sql = "SELECT * FROM miembros WHERE id_miembro = '".$id_miembro."';";
+		DBO::select_db($this->db);
+		$row = DBO::get($sql);
+		
+		if( !$row->user_id )
+			return false;
+		else
+			return $row->user_id;
+	}
+	
+	private function existUserPortal( $usu_id ){
+		$sql = "SELECT * FROM usuario WHERE usu_id = '".$usu_id."';";
+		DBO::select_db('hovahlt');
+		$row = DBO::get($sql);
+		
+		if( !$row->usu_id )
+			return false;
+		else
+			return $row->usu_id;
+	}
+	
+	
+
+    private function addUSerDBPortal( $d ){
+		
+		$datos['usu_id'] = $d['usu_id'];
+		$datos['usu_nom'] = $d['nombre'].' '.$d['nombre_sec'];
+		$datos['usu_pat'] = $d['apaterno'];
+		$datos['usu_mat'] = $d['amaterno'];
+		$datos['usu_alias'] = $d['username'];
+		$datos['usu_psw'] = $d['password'];
+		$datos['usu_mail'] = $d['email'];
+		$datos['catNivelUsuario_niv_id'] = $d['nivelUser'];
+	
+		$sql = "INSERT INTO usuario ( usu_id, usu_nom, usu_pat, usu_mat, usu_alias, usu_psw, usu_mail, usu_cel, usu_sky, catNivelUsuario_niv_id, zona, gerente, 
+		usu_lastlogin, foto, area_usuarios, area2_usuarios, clave_area, clave_usuario) 
+		VALUES ('".$datos['usu_id']."', '".$datos['usu_nom']."', '".$datos['usu_pat']."', '".$datos['usu_mat']."', '".$datos['usu_alias']."', '".$datos['usu_psw']."', '".$datos['usu_mail']."', 
+		'', '', '".$datos['catNivelUsuario_niv_id']."', '0', '0', CURRENT_TIMESTAMP, NULL, '', NULL, '', '');";
+		DBO::select_db('hovahlt');
+	
+		return DBO::insert($sql, true);
+	}
+	
+public function bajaPortal( $datos ){
+	$password = '$sin.password$!';
+	$usu_id = $datos['user_id'];
+	$this->updatePassUserPortal( $usu_id, $password );
+
+	$this->setDenyAccessPortal( $datos['id_miembro'] );
+}
+
+public function updatePassUserPortal( $usu_id, $password ){
+
+	$sql = "UPDATE usuario SET usu_alias = '".$password."' WHERE usu_id = '".$usu_id."';";
+
+	DBO::select_db('hovahlt');
+	$a = DBO::doUpdate($sql);
+}
+
+	private function setDenyAccessPortal( $id_miembro ){
+		$sql = "UPDATE miembros SET accesoPortal = '0' WHERE id_miembro = '".$id_miembro."';";
+
+		DBO::select_db($this->db);
+		$a = DBO::doUpdate($sql);
+	}
+
+
+private function logAltaSistema( $id_sistema, $id_miembro ){
+	$this->addlogSistemas( $id_sistema, $id_miembro, 1 );
+}
+
+private function logBajaSistema( $id_sistema, $id_miembro ){
+	$this->addlogSistemas( $id_sistema, $id_miembro, 0 );
+}
+
+private function addlogSistemas( $id_sistema, $id_miembro, $tipo ){
+	$sql = "INSERT INTO logs_sistemas ( id_sistema, id_miembro, action ) VALUES ( '".$id_sistema."', '".$id_miembro."', '".$tipo."');";
+
+	DBO::select_db($this->db);
+	$a = DBO::doUpdate($sql);
+}
+
+
 public function getHorarioMiembro( $datos, $dia ){
 	$sql = "SELECT * FROM horarios h INNER JOIN descripciones d ON d.id_descripcion = h.id_descripcion WHERE h.id_miembro = '".$datos['id']."' AND h.dia = '".$dia."'";
 	DBO::select_db($this->db);
@@ -141,6 +285,12 @@ $a = DBO::doUpdate($sql);
 public function listMiembrosSinPuesto(){
 	$sql = "SELECT *, REPLACE(CONCAT_WS(' ', nombre, nombre_sec, apaterno, amaterno) ,'N/A','') AS nombre FROM miembros WHERE id_puesto = 0 AND active = 1;";
 	DBO::select_db($this->db);
+	return DBO::getArray($sql);
+}
+
+public function catNivelesUsuario(){
+	$sql = "SELECT * FROM catnivelusuario;";
+	DBO::select_db('hovahlt');
 	return DBO::getArray($sql);
 }
 

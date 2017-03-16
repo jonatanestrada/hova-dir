@@ -94,6 +94,34 @@ $_POST = array_merge( $_POST, $a);
      }  
    }
    
+   private function addEmpleadoPortal() {  
+		$this->checkMethod( "POST" );
+		
+		$data = $this->datosPeticion;
+		
+		$miembro = new Miembro;
+   
+     if (1 /*isset($this->datosPeticion['nombre'], $this->datosPeticion['email'], $this->datosPeticion['pwd'])*/ ) {  
+       //$nombre = $this->datosPeticion['nombre'];  
+       //$pwd = $this->datosPeticion['pwd'];  
+       //$email = $this->datosPeticion['email'];  
+       
+	  $miembro->altaPortal( $data );
+	   
+	   if ( 1 /*!$this->existeUsuario($email)*/) {  
+           //$id = $this->_conn->lastInsertId();  
+           $respuesta['estado'] = 'correcto';  
+           $respuesta['msg'] = 'se agrego el usuario correctamente';  
+           $respuesta['data'] = $data;
+           /*$respuesta['usuario']['nombre'] = $nombre;  
+           $respuesta['usuario']['email'] = $email;  */
+           $this->mostrarRespuesta($this->convertirJson($respuesta), 200);  
+       }  
+     } else {  
+       $this->mostrarRespuesta($this->convertirJson($this->devolverError(7)), 400);  
+     }  
+   }
+   
    private function addPuesto() {  
 		$this->checkMethod( "POST" );
 		
@@ -285,6 +313,34 @@ $_POST = array_merge( $_POST, $a);
            $respuesta['estado'] = 'correcto';  
            $respuesta['msg'] = 'usuario creado correctamente';  
            $respuesta['miembros'] = $miembros;
+           /*$respuesta['usuario']['nombre'] = $nombre;  
+           $respuesta['usuario']['email'] = $email;  */
+           $this->mostrarRespuesta($this->convertirJson($respuesta), 200);  
+       }  
+     } else {  
+       $this->mostrarRespuesta($this->convertirJson($this->devolverError(7)), 400);  
+     }  
+   }
+   
+   private function getNivelesUsuario(  ) {
+		$this->checkMethod( "GET" );
+		
+		$miembro = new Miembro;
+		
+		$data = $this->datosPeticion;
+   
+     if (1 /*isset($this->datosPeticion['nombre'], $this->datosPeticion['email'], $this->datosPeticion['pwd'])*/ ) {  
+       //$nombre = $this->datosPeticion['nombre'];  
+       //$pwd = $this->datosPeticion['pwd'];  
+       //$email = $this->datosPeticion['email'];  
+       
+	   $catNivelesUsuario = $miembro->catNivelesUsuario( $data );
+	   
+	   if ( 1 /*!$this->existeUsuario($email)*/) {  
+           //$id = $this->_conn->lastInsertId();  
+           $respuesta['estado'] = 'correcto';  
+           $respuesta['msg'] = 'Get niveles de usuario';  
+           $respuesta['catNivelesUsuario'] = $catNivelesUsuario;
            /*$respuesta['usuario']['nombre'] = $nombre;  
            $respuesta['usuario']['email'] = $email;  */
            $this->mostrarRespuesta($this->convertirJson($respuesta), 200);  
@@ -692,6 +748,30 @@ $_POST = array_merge( $_POST, $a);
 	   $p = $puesto->deleteMiembroPuesto( $data );
 	   $m = $miembro->deletePuestoPuesto( $data );
 	   $m = $miembro->darDeBaja( $data );
+	   
+	   if ( 1 /*!$this->existeUsuario($email)*/) {  
+
+           $respuesta['estado'] = 'correcto';  
+           $respuesta['msg'] = 'Se dio de baja correctamente';  
+           //$respuesta['miembros'] = $puestos;
+
+           $this->mostrarRespuesta($this->convertirJson($respuesta), 200);  
+       }  
+     } else {  
+       $this->mostrarRespuesta($this->convertirJson($this->devolverError(7)), 400);  
+     }  
+   }
+   
+   private function bajaPortal() {
+		$this->checkMethod( "POST" );
+		
+		$data = $this->datosPeticion;
+		$miembro = new Miembro;
+   
+     if (1 /*isset($this->datosPeticion['nombre'], $this->datosPeticion['email'] )*/ ) {  
+       //$nombre = $this->datosPeticion['nombre'];  
+       
+	   $m = $miembro->bajaPortal( $data );
 	   
 	   if ( 1 /*!$this->existeUsuario($email)*/) {  
 

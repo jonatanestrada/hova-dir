@@ -9,6 +9,7 @@ app.controller('DirectorioCntroller', function($scope, $http){
 	$scope.horarios = [];
 	$scope.ubicaciones = [];
 	$scope.catDescripciones = [];
+	$scope.catNivelesUsuario = [];
 	
 	$scope.edit = function( row ){
 		//console.log(row);
@@ -19,6 +20,28 @@ app.controller('DirectorioCntroller', function($scope, $http){
 		//console.log(row);
 		$scope.formData = row;
 	};
+	
+	$scope.darAltaPortal = function( row ){
+		//console.log(row);
+		getCatNivelesUsuario( row );
+		$scope.formData = row;
+		$scope.formData.username = generateUserPortal( row );
+	};
+	
+	$scope.darBajaPortal = function( row ){
+		//console.log(row);
+		getCatNivelesUsuario( row );
+		$scope.formData = row;
+	};
+	
+	function generateUserPortal( row ){
+		var str = row.nombre;
+		str.toLowerCase();
+		var res = str.substring(0, 1) + row.apaterno + '.hova';
+		var username = res.toLowerCase();
+	
+		return username;
+	}
 	
 	$scope.horariosMiembro = function( row ){
 		//console.log(row);
@@ -62,6 +85,25 @@ app.controller('DirectorioCntroller', function($scope, $http){
 			console.log(error);
 	   });
 	}
+	
+	$scope.submitAddPortalForm = function( formValid ){
+	//console.log($scope.formData);
+		if(formValid)
+		{   //console.log('SI');
+			$http({
+			  method: 'POST',
+			  url: '../api/index.php?url=addEmpleadoPortal',
+			  data: $scope.formData
+		   }).then(function (response){
+				console.log(response);
+				$('#modalAltaPortal').modal('toggle');
+				alert( 'Se guardo exitosamente.' )
+				load($scope.noPage);
+		   },function (error){
+				console.log(error);
+		   });
+		}
+   }
 	
 	$scope.submitFormAddHorario = function(){
 		//console.log('Add horario');
@@ -122,6 +164,26 @@ app.controller('DirectorioCntroller', function($scope, $http){
 			console.log(error);
 	   });
    }
+   
+   	$scope.submitBajaPortalForm = function(){
+	//console.log('submitBajaPortalForm');
+		$http({
+		  method: 'POST',
+		  url: '../api/index.php?url=bajaPortal',
+		  data: $scope.formData
+	   }).then(function (response){
+			console.log(response);
+			
+			load( $scope.noPage, '' );
+			//console.log('Entro');
+			$('#modalBajaPortal').modal('toggle');
+			alert( 'Se dio de baja exitosamente.' )
+			//$scope.personas.push($scope.newPersona);
+			//$scope.newPersona = {};
+	   },function (error){
+			console.log(error);
+	   });
+   }
 	
 	
 	$scope.submitForm = function(){
@@ -146,6 +208,22 @@ app.controller('DirectorioCntroller', function($scope, $http){
 	
 	
 	load( 1, '' );
+	
+	function getCatNivelesUsuario( row ){
+		$http({
+				  headers: { 'Content-Type': 'application/json; charset=UTF-8'},
+				  method: 'GET',
+				  url: '../api/index.php?url=getNivelesUsuario'
+			   }).then(function (response){
+			   //console.log('niveles usuario');
+					$scope.catNivelesUsuario = response.data.catNivelesUsuario;
+					console.log($scope.catNivelesUsuario);
+					
+			   },function (error){
+
+			   });
+	
+	}
 	
 	function getHorarioMiembro( row ){
 	console.log(row.id_miembro);

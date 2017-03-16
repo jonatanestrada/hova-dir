@@ -41,6 +41,8 @@
 						<img ng-show='m.active==1' src='/img/pencil.png' ng-click='edit(m)' data-toggle="modal" data-target="#myModal" class='btnImg' >
 						<img ng-show='m.active==1' src='/img/clock.png' ng-click='horariosMiembro(m)' data-toggle="modal" data-target="#modalHorarios" class='btnImg'>
 						<img ng-show='m.active==1' src='/img/user_delete_2.png' ng-click='darDeBajaEmpleado(m)' data-toggle="modal" data-target="#modalDarDeBaja" class='btnImg'>
+						<img ng-show='m.active==1 && !m.accesoPortal' src='/img/key.png' ng-click='darAltaPortal(m)' data-toggle="modal" data-target="#modalAltaPortal" class='btnImg'>
+						<img ng-show='m.active==1 && m.accesoPortal' src='/img/key_red.png' ng-click='darBajaPortal(m)' data-toggle="modal" data-target="#modalBajaPortal" class='btnImg'>
 				  </td>
                 </tr>
 
@@ -65,5 +67,12 @@
 	<div >
 		<?php include_once '../views/directorio/miembros/modal_darDeBaja.php'; ?>
 	</div>
+	
+	<div >
+		<?php include_once '../views/directorio/miembros/modal_altaPortal.php'; ?>
+	</div>
   
+  	<div >
+		<?php include_once '../views/directorio/miembros/modal_bajaPortal.php'; ?>
+	</div>
   

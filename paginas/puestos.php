@@ -66,6 +66,11 @@ include_once '../conf.php'
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.min.js"></script>
 	<script>
+		$(document).ready(function(){
+			$('#ver > option[value="0"]').attr('selected', 'selected');
+		});
+	</script>
+	<script>
 		$('.datepick').datepicker({
         format: ' “mm/dd/yyyy”'
       });
