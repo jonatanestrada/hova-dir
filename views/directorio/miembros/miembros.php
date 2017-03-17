@@ -2,18 +2,39 @@
 
         <div class="col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 main">
 
-			<h1 class="page-header">Empleados</h1>
+			<h1 class="page-header">Personal</h1>
 			
 			
-			<button type="button" class="btn btn-default" onclick="location.href='agregar'" data-dismiss="modal">Agregar empleado</button>
+			<button type="button" class="btn btn-default" onclick="location.href='agregar'" data-dismiss="modal">Agregar personal</button>
 			<a href='../paginas/export_empleados.php' style='float:right'><img src='/img/excel.png'></a>
 			<br><br>
 			
 			<input type="text" ng-change="load(1, nameSearch)" ng-model="nameSearch" class="form-control" placeholder="Buscar..." 
 			ng-model-options='{ debounce: 300 }'/>
 			
+			<style>
+			
+tbody {
+    display:block;
+    height:200px;
+    overflow:auto;
+}
+thead, tbody tr {
+    display:table;
+    width:100%;
+    table-layout:fixed;
+	 overflow:auto;
+}
+thead {
+    width: calc( 100% - 1em )
+}
+
+			
+			</style>
+			
+			
 			<div class="table-responsive">
-            <table class="table table-striped">
+            <table class="table table-striped ">
               <thead>
                 <tr>
                   <th>ID</th>
@@ -23,7 +44,7 @@
 				  <th>Edad</th>				  
 				  <th>Antigüedad</th>
                   <th>Tel</th>
-                  <th>Email</th>
+                  <th style='text-align: center;'>Email</th>
 				  <th>Action</th>
                 </tr>
               </thead>
@@ -36,7 +57,7 @@
 				  <td>{{m.edad}}</td>
 				  <td>{{m.years_a}} a&ntilde;os {{m.months_a}} meses</td>
                   <td>{{m.telefono_directo}}</td>
-                  <td>{{m.email}}</td>
+                  <td style='text-align: right;'>{{m.email}}</td>
 				  <td>
 						<img ng-show='m.active==1' src='/img/pencil.png' ng-click='edit(m)' data-toggle="modal" data-target="#myModal" class='btnImg' >
 						<img ng-show='m.active==1' src='/img/clock.png' ng-click='horariosMiembro(m)' data-toggle="modal" data-target="#modalHorarios" class='btnImg'>

@@ -6,6 +6,8 @@
 			<input type="hidden" ng-change="load(1, nameSearch)" ng-model="nameSearch" class="form-control" placeholder="Buscar..." 
 			ng-model-options='{ debounce: 300 }'/>
 			
+			<a href='../paginas/export_puestos.php' style='float:right'><img src='/img/excel.png'></a><br>
+			
 			<div class="form-group">
 			  <label for="sel1">Ver:</label>
 			  

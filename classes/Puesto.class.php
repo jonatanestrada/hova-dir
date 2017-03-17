@@ -99,6 +99,22 @@ WHERE 1 $vacante
 	return Response::$data->result = Paginacion::getPaginacion( $sql, $db, $page, 3, 100 );
 }
 
+public function exportExcel(){
+  $sql = "SELECT cp.nombre AS posicion, py.nombre AS proyecto,
+c.nombre AS clave, d.nombre AS descripcion, p.observaciones,
+cpj.nombre AS responde_a, m.nombre as nombre_p, m.nombre_sec, m.apaterno, m.amaterno, m.telefono_directo, m.observaciones AS observaciones2, m.celular, m.email,
+p.* FROM puestos p
+INNER JOIN cat_puestos cp ON cp.id = p.id_nombrePuesto
+INNER JOIN proyectos py ON py.id_proyecto = p.id_proyecto
+INNER JOIN claves c ON c.id_clave = p.id_clave
+INNER JOIN descripciones d ON d.id_descripcion = p.id_descripcion
+INNER JOIN cat_puestos cpj ON cpj.id = p.id_puesto_superior
+INNER JOIN miembros m ON m.id_miembro = p.id_miembro";
+		
+  DBO::select_db($this->db);
+  return DBO::getArray($sql);
+}
+
 public function listCatPuestos(){
   $sql = "SELECT * FROM cat_puestos";
   DBO::select_db($this->db);
@@ -131,7 +147,8 @@ public function listCatClaves(){
 }
 
 public function listCatDescripciones(){
-  $sql = "SELECT * FROM descripciones";
+  $sql = "SELECT descripciones.*, c.nombre AS clave FROM descripciones
+INNER JOIN claves c ON c.id_clave = descripciones.id_clave";
   DBO::select_db($this->db);
   return DBO::getArray($sql);
 }

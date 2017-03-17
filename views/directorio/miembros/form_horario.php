@@ -10,7 +10,7 @@
 			
 	<label for="ubicacion">Ubicaci&oacute;n</label>
 	<div class="form-group">
-		<select class="form-control" ng-options="c.id_descripcion as c.nombre for c in catDescripciones | orderBy : 'nombre'" ng-model="selectedDesc"></select>
+		<select class="form-control" ng-options="c.id_descripcion as c.clave+' - '+c.nombre for c in catDescripciones | orderBy : 'nombre'" ng-model="selectedDesc"></select>
     </div>
 
 
