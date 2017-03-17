@@ -11,8 +11,26 @@
 			<a href='agregar' style='float:right;margin-right: 5px;' ><img src='/img/plus.png'></a>
 			<br><br>
 			
-			<input type="text" ng-change="load(1, nameSearch)" ng-model="nameSearch" class="form-control" placeholder="Buscar..." 
-			ng-model-options='{ debounce: 300 }'/>
+		   <div class="row">
+				<div class="col-xs-6">
+				  <div class="form-group">
+					  <label for="sel2">&nbsp;</label>
+					  
+					  <input type="text" ng-change="load(1, nameSearch)" ng-model="nameSearch" class="form-control" placeholder="Buscar..." 
+					ng-model-options='{ debounce: 300 }'/>
+					</div>
+				</div>
+				<div class="col-xs-6">
+				  <div class="form-group">
+					  <label for="sel1">Ver:</label>
+					  
+					  <select id='ver' class="form-control"  ng-change="load(1, nameSearch, statusEmpleado)" ng-model="statusEmpleado" >
+						<option value='1' >Activos</option>
+						<option value='0'>Dados de baja</option>
+					  </select>
+					</div>
+				</div>
+			  </div>
 			
 			<style>
 			

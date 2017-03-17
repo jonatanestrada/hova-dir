@@ -53,6 +53,7 @@ app.controller('DirectorioCntroller', function($scope, $http){
 		$scope.formData.jueves = '';
 		$scope.formData.viernes = '';
 		$scope.formData.sabado = '';
+		$scope.statusEmpleado = 0;
 		
 		$scope.formData = row;
 		getHorarioMiembro( row );		
@@ -253,17 +254,17 @@ app.controller('DirectorioCntroller', function($scope, $http){
 		   });
 	}
 	
-   $scope.load= function( page, nameSearch ){ 
-		load( page, nameSearch );
+   $scope.load= function( page, nameSearch, statusEmpleado = 0 ){ 
+		load( page, nameSearch, statusEmpleado );
    }
    
-   function load( page, nameSearch ){
+   function load( page, nameSearch, statusEmpleado ){
 		$scope.noPage = page;
    		if( page > 0 ){   
 			$http({
 			  headers: { 'Content-Type': 'application/json; charset=UTF-8'},
 			  method: 'GET',
-			  url: '../api/index.php?url=getMiembros&page='+page+'&n='+nameSearch
+			  url: '../api/index.php?url=getMiembros&page='+page+'&n='+nameSearch+'&statusEmpleado='+statusEmpleado
 		   }).then(function (response){
 				$scope.miembros = [];
 				$scope.pages = [];		  

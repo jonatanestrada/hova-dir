@@ -85,7 +85,11 @@ include_once '../conf.php'
 	<link rel="stylesheet" href="/lib/bootstrap-select.css">
 	<script src="/lib/bootstrap-select.js"></script>
   
-  
+  	<script>
+		$(document).ready(function(){
+			$('#ver > option[value="1"]').attr('selected', 'selected');
+		});
+	</script>
 	<script>
 		$(document).ready(function(){
 			var dtr = [];

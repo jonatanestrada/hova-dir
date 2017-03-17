@@ -299,6 +299,10 @@ public function listMiembros( $datos, $paginacion = 1 ){
 	$n = isset( $datos['n'] ) ? $datos['n'] : '';
 	if( isset( $datos['n'] ) )
 		$n = $datos['n'] == 'undefined'  ? '' : $datos['n'];
+		
+	$statusEmpleado = isset( $datos['statusEmpleado'] ) ? $datos['statusEmpleado'] : '';
+	if( isset( $datos['statusEmpleado'] ) )
+		$statusEmpleado = $datos['statusEmpleado'] == 'undefined'  ? 1 : $datos['statusEmpleado'];
 	
 	$n =  html_entity_decode($n);
 	//$n = '';
@@ -319,7 +323,7 @@ public function listMiembros( $datos, $paginacion = 1 ){
 	FROM miembros m
     LEFT JOIN puestos p ON p.id_puesto = m.id_puesto
     LEFT JOIN cat_puestos cp ON cp.id = p.id_nombrePuesto
-	WHERE REPLACE(CONCAT_WS(' ', m.nombre, m.nombre_sec, m.apaterno, m.amaterno) ,'N/A','') LIKE '%".$n."%'
+	WHERE m.active = '".$statusEmpleado."'  AND REPLACE(CONCAT_WS(' ', m.nombre, m.nombre_sec, m.apaterno, m.amaterno) ,'N/A','') LIKE '%".$n."%'
 	ORDER BY m.id_miembro";
 	if( $paginacion == 1 )
 		return Response::$data->result = Paginacion::getPaginacion( $sql, $db, $page, 3, 100 );
