@@ -1,12 +1,13 @@
         <div class="col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 main">
 			<h1 class="page-header">Plantilla HOVA</h1>
 			
-			<button type="button" class="btn btn-default" onclick="location.href='agregar'" data-dismiss="modal">Agregar puesto</button><br><br>
+			<button style='display:none;' type="button" class="btn btn-default" onclick="location.href='agregar'" data-dismiss="modal">Agregar puesto</button><br><br>
 			
-			<input type="hidden" ng-change="load(1, nameSearch)" ng-model="nameSearch" class="form-control" placeholder="Buscar..." 
+			<input  type="hidden" ng-change="load(1, nameSearch)" ng-model="nameSearch" class="form-control" placeholder="Buscar..." 
 			ng-model-options='{ debounce: 300 }'/>
 			
-			<a href='../paginas/export_puestos.php' style='float:right'><img src='/img/excel.png'></a><br>
+			<a href='../paginas/export_puestos.php' style='float:right'><img src='/img/excel.png'></a>
+			<a href='agregar' style='float:right;margin-right: 5px'><img src='/img/plus.png'></a><br><br>
 			
 			<div class="form-group">
 			  <label for="sel1">Ver:</label>

@@ -95,6 +95,8 @@ include_once '../conf.php'
 			'showDuration': true,
 			'timeFormat': 'g:ia',
 			//'scrollDefaultTime': '9:00pm',
+			'scrollDefault': '9am',
+			'maxTime': '11:59pm',
 			'disableTimeRanges': dtr
 			});
 
