@@ -14,7 +14,7 @@
 		   <div class="row">
 				<div class="col-xs-6">
 				  <div class="form-group">
-					  <label for="sel2">&nbsp;</label>
+					  <label for="sel2">&nbsp;22</label>
 					  
 					  <input type="text" ng-change="load(1, nameSearch)" ng-model="nameSearch" class="form-control" placeholder="Buscar..." 
 					ng-model-options='{ debounce: 300 }'/>
