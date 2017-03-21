@@ -79,8 +79,8 @@ thead {
 				  <td><a href="#" data-toggle="tooltip" title="{{m.jefe.toString().split(' - ')[1]}}">{{m.jefe.toString().split(" - ")[0]}}</a></td>
 				  <td>{{m.edad}}</td>
 				  <td>{{m.years_a}} a&ntilde;os {{m.months_a}} meses</td>
-                  <td>{{m.telefono_directo}}</td>
-                  <td style='text-align: right;'>{{m.email}}</td>
+                  <td>{{m.telefono_directo.replace("N/A", ""); }}</td>
+                  <td style='text-align: right;'>{{m.email.replace("N/A", "");}}</td>
 				  <td>
 						<img ng-show='m.active==1' src='/img/pencil.png' ng-click='edit(m)' data-toggle="modal" data-target="#myModal" class='btnImg' >
 						<img ng-show='m.active==1' src='/img/clock.png' ng-click='horariosMiembro(m)' data-toggle="modal" data-target="#modalHorarios" class='btnImg'>

@@ -46,7 +46,7 @@
                   <td>{{m.proyecto}}</td>
                   <td>{{m.clave}}</td>
                   <td>{{m.descripcion}}</td>
-				  <td>{{m.observaciones}}</td>
+				  <td>{{m.observaciones.replace("N/A", "");}}</td>
 				  
 				  <td style='text-align:center;vertical-align:middle;' > 				  
 					<a ng-show='m.subordinado > 0' href='' ng-click="viewSubordinados(m)">{{m.subordinado}}</a>				  
