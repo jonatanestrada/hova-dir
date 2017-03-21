@@ -9,7 +9,14 @@
 	
 	<div class="form-group">
 		<label for="nombre">Nombre</label>
+		
+		<div class="input-group">
+			<span class="input-group-addon">
+				<input type="checkbox" id="preferencia_nombre" ng-model="formData.preferencia_nombre" >
+			</span>
+		
 		  <input type="text" ng-model="formData.nombre" name="nombre" class="form-control" placeholder="Nombre" required="" />	
+		</div>
 		<div ng-show="saveMiembro.$submitted || saveMiembro.nombre.$touched">
 		  <div ng-show="saveMiembro.nombre.$error.required">Este es un campo requerido.</div>
 		</div>
@@ -17,7 +24,13 @@
 	
 	<div class="form-group">
 		<label for="nombre_sec">Segundo nombre</label>
-		  <input type="text" ng-model="formData.nombre_sec" name="nombre_sec" class="form-control" placeholder="Segundo nombre"  />	
+		
+		<div class="input-group">
+			<span class="input-group-addon">
+				<input type="checkbox" id="preferencia_nombre_sec" ng-model="formData.preferencia_nombre_sec" >
+			</span>
+			<input type="text" ng-model="formData.nombre_sec" name="nombre_sec" class="form-control" placeholder="Segundo nombre"  />	
+		</div>
 		<div ng-show="saveMiembro.$submitted || saveMiembro.nombre_sec.$touched">
 		  <div ng-show="saveMiembro.nombre_sec.$error.required">Este es un campo requerido.</div>
 		</div>

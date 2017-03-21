@@ -3,14 +3,27 @@
 				<input id="id_miembro" ng-model="formData.id_miembro" type='hidden' >
 			  <div class="form-group">
 				<label for="nombre">Nombre</label>
-				<input type="nombre" class="form-control" id="nombre" ng-model="formData.nombre" placeholder="Nombre" ng-required='!formData.nombre'>
+				
+				<div class="input-group">
+					<span class="input-group-addon">
+						<input type="checkbox" id="preferencia_nombre" ng-model="formData.preferencia_nombre" ng-checked="formData.preferencia_nombre == 1">
+					</span>
+					<input type="nombre" class="form-control" id="nombre" ng-model="formData.nombre" placeholder="Nombre" ng-required='!formData.nombre'>
+				</div>
 			  </div>
 			  
 			  <p ng-show="formData.nombre.$invalid && !formData.nombre.$pristine" class="help-block">You name is required.</p>
 			  
 			  <div class="form-group">
 				<label for="nombre_sec">Segundo nombre</label>
-				<input type="nombre_sec" class="form-control" id="nombre_sec" ng-model="formData.nombre_sec" placeholder="Segundo nombre">
+				
+				<div class="input-group">
+					<span class="input-group-addon">
+						<input type="checkbox" id="preferencia_nombre_sec" ng-model="formData.preferencia_nombre_sec" ng-checked="formData.preferencia_nombre_sec == 1">
+					</span>
+				
+					<input type="nombre_sec" class="form-control" id="nombre_sec" ng-model="formData.nombre_sec" placeholder="Segundo nombre">
+				</div>
 			  </div>
 			  
 			  <div class="form-group">
