@@ -190,6 +190,7 @@ app.controller('DirectorioCntroller', function($scope, $http){
 	$scope.submitForm = function(){
 	//console.log($scope.formData);
 	$scope.formData.fecha_nacimiento = $("#fecha_nacimiento").val();
+	$scope.formData.fecha_ingreso = $("#fecha_ingreso").val();
 	
 		$http({
 		  method: 'POST',

@@ -13,6 +13,7 @@ app.controller('DirectorioCntroller', function($scope, $http){
 			
 			
 			$scope.formData.fecha_nacimiento = $("#fecha_nacimiento").val();
+			$scope.formData.fecha_ingreso = $("#fecha_ingreso").val();
 			
 		
 			$('#btnSubmit').attr('disabled',true);

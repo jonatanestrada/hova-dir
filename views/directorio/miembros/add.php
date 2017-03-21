@@ -54,7 +54,20 @@
 		</div>
 	</div>
 	
-	
+	<div class="form-group">
+		<label for="fecha_ingreso">Fecha de ingreso</label>
+		  
+		<div class="input-group date" >
+			<input type="text" class="form-control " ng-model="formData.fecha_ingreso" name='fecha_ingreso' id='fecha_ingreso' placeholder='Fecha de ingreso'>
+			<div class="input-group-addon">
+				<span class="glyphicon glyphicon-calendar"></span>
+			</div>
+		</div>
+		  
+		<div ng-show="saveMiembro.$submitted || saveMiembro.fecha_ingreso.$touched">
+		  <div ng-show="saveMiembro.fecha_ingreso.$error.required">Este es un campo requerido.</div>
+		</div>
+	</div>	
 
 	<div class="form-group">
 		<label for="email">Email</label>

@@ -106,6 +106,13 @@ include_once '../conf.php'
   changeMonth: true,
   defaultDate: "-18y"
 });
+
+$( "#fecha_ingreso" ).datepicker({
+  dateFormat: "yy-mm-dd",
+  changeYear: true,
+  changeMonth: true
+});
+
   } );
   </script>
   

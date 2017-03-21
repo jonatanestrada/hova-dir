@@ -33,7 +33,17 @@
 		  <div ng-show="saveMiembro.fecha_nacimiento.$error.required">Este es un campo requerido.</div>
 		</div>
 	</div>
-			  			  
+
+	<div class="form-group">
+		<label for="fecha_ingreso">Fecha de ingreso</label>
+		  
+			<input data-provide="datepicker" type="text" class="form-control" ng-model="formData.fecha_ingreso" name='fecha_ingreso' id='fecha_ingreso' placeholder='Fecha de ingreso'>
+		  
+		<div ng-show="saveMiembro.$submitted || saveMiembro.fecha_ingreso.$touched">
+		  <div ng-show="saveMiembro.fecha_ingreso.$error.required">Este es un campo requerido.</div>
+		</div>
+	</div>
+	
 			  <div class="form-group">
 				<label for="email">Email</label>
 				<input type="email" class="form-control" id="email" ng-model="formData.email" placeholder="Email">
