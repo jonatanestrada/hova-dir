@@ -38,7 +38,7 @@
                 <tr ng-repeat="m in miembros">
                   <td>{{m.id_puesto}}</td>
                   <td>{{m.nombre}}</td>
-				  <td>{{m.responde_a}}</td>
+				  <td><a href="#" data-toggle="tooltip" title="{{m.responde_a.toString().split(' - ')[1]}}">{{m.responde_a.toString().split(" - ")[0]}}</a></td>
 				  <td>
 				  {{m.nombre_empleado}}
 				  <label ng-show='!m.nombre_empleado'>VACANTE</label>

@@ -76,7 +76,7 @@ thead {
                   <td>{{m.id_miembro}}</td>
                   <td>{{m.nombre2}}</td>
 				  <td>{{m.puesto}}</td>
-				  <td>{{m.jefe}}</td>
+				  <td><a href="#" data-toggle="tooltip" title="{{m.jefe.toString().split(' - ')[1]}}">{{m.jefe.toString().split(" - ")[0]}}</a></td>
 				  <td>{{m.edad}}</td>
 				  <td>{{m.years_a}} a&ntilde;os {{m.months_a}} meses</td>
                   <td>{{m.telefono_directo}}</td>
