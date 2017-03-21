@@ -254,7 +254,7 @@ app.controller('DirectorioCntroller', function($scope, $http){
 		   });
 	}
 	
-   $scope.load= function( page, nameSearch, statusEmpleado = 0 ){ 
+   $scope.load= function( page, nameSearch, statusEmpleado = 1 ){ 
 		load( page, nameSearch, statusEmpleado );
    }
    
