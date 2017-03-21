@@ -42,24 +42,26 @@ private function logAltaPuesto( $id_puesto, $id_miembro ){
 	$this->addlogPuestos( $id_puesto, $id_miembro, 1 );
 }
 
-private function logBajaPuesto( $id_puesto, $id_miembro ){
-	$this->addlogPuestos( $id_puesto, $id_miembro, 0 );
+private function logBajaPuesto( $id_puesto, $id_miembro, $motivo ){
+	$this->addlogPuestos( $id_puesto, $id_miembro, 0, $motivo );
 }
 
-private function addlogPuestos( $id_puesto, $id_miembro, $tipo ){
-	$sql = "INSERT INTO logs_puestos ( id_puesto, id_miembro, tipo) VALUES ('".$id_puesto."', '".$id_miembro."', '".$tipo."');";
+private function addlogPuestos( $id_puesto, $id_miembro, $tipo, $descripcion ){
+	$sql = "INSERT INTO logs_puestos ( id_puesto, id_miembro, tipo, descripcion ) VALUES ('".$id_puesto."', '".$id_miembro."', '".$tipo."', '".$descripcion."');";
 
 	DBO::select_db($this->db);
 	$a = DBO::doUpdate($sql);
 }
 
 public function deleteMiembroPuesto( $datos ){
+	$datos['motivo'] = isset($datos['motivo']) ? $datos['motivo'] : ''; 
+	
 	$sql = "UPDATE puestos SET vacante = '1', fecha_update = CURRENT_TIMESTAMP, id_miembro = '0' WHERE id_puesto = '".$datos['id_puesto']."';";
 
 	DBO::select_db($this->db);
 	$a = DBO::doUpdate($sql);
 	
-	$this->logBajaPuesto( $datos['id_puesto'], $datos['id_miembro'] );
+	$this->logBajaPuesto( $datos['id_puesto'], $datos['id_miembro'], $datos['motivo'] );
 }
 
 public function listPuestos( $datos ){

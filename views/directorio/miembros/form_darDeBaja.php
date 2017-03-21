@@ -23,10 +23,6 @@
 				<input type="amaterno" class="form-control" id="amaterno" ng-model="formData.amaterno" placeholder="Apellido Materno" readonly>
 			  </div>
 			  
-			  <div class="form-group">
-				<label for="nombre_sec">Fecha de nacimiento</label>
-				<input type="text" class="form-control" id="fecha_nacimiento" ng-model="formData.fecha_nacimiento" placeholder="Fecha nacimiento" readonly>
-			  </div>		  
 
 			  <div class="form-group">
 				<label for="email">Email</label>
@@ -43,11 +39,10 @@
 				<input type="observaciones" class="form-control" id="observaciones" ng-model="formData.observaciones" placeholder="Observaciones" readonly>
 			  </div>
 			  
-			  <div class="form-group">
-				<label for="celular">Celular</label>
-				<input type="celular" class="form-control" id="celular" ng-model="formData.celular" placeholder="celular" readonly>
-			  </div>
-			  
+			<div class="form-group">
+			  <label for="comment">Motivo de la baja:</label>
+			  <textarea class="form-control" rows="5" id="motivo" name="motivo" ng-model="formData.motivo" ></textarea>
+			</div>			  
 			  
 		<div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
