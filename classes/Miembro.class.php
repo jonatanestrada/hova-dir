@@ -8,7 +8,7 @@ class Miembro{
 var $db;
 
 function __construct() {
-       $this->db = 'directorio_v2';
+       $this->db = 'directorio';
    }
 
 public function addMiembro( $datos ){
@@ -258,10 +258,14 @@ public function editMiembro( $datos ){
 	/*$fn = explode("/", $datos['fecha_nacimiento']);
 	var_dump($fn);
 	$fecha_nacimiento = $fn[0].'-'.$fn[1].'-'.$fn[2].' 00:00:00';*/
-	$fecha_nacimiento = $datos['fecha_nacimiento'] == '' ? '' : $datos['fecha_nacimiento'].' 00:00:00';
-	$fecha_ingreso = $datos['fecha_ingreso'] == '' ? '' : $datos['fecha_ingreso'].' 00:00:00';
+	//$fecha_nacimiento = $datos['fecha_nacimiento'] == '' ? '' : $datos['fecha_nacimiento'].' 00:00:00';
+	//$fecha_ingreso = $datos['fecha_ingreso'] == '' ? '' : $datos['fecha_ingreso'].' 00:00:00';
+	
+	$fecha_nacimiento = $datos['fecha_nacimiento'] == '' ? "NULL" : "'".datos['fecha_nacimiento'].' 00:00:00'."'";
+	$fecha_ingreso = $datos['fecha_ingreso'] == '' ? 'CURRENT_TIMESTAMP' : "'".$datos['fecha_ingreso'].' 00:00:00'."'";
+	
 
-	$sql = "UPDATE miembros SET fecha_ingreso = '".$fecha_ingreso."', fecha_nacimiento = '".$fecha_nacimiento."', nombre = '".$datos['nombre']."', nombre_sec = '".$datos['nombre_sec']."', apaterno = '".$datos['apaterno']."', amaterno = '".$datos['amaterno']."', email = '".$datos['email']."', 
+	$sql = "UPDATE miembros SET fecha_ingreso = ".$fecha_ingreso.", fecha_nacimiento = ".$fecha_nacimiento.", nombre = '".$datos['nombre']."', nombre_sec = '".$datos['nombre_sec']."', apaterno = '".$datos['apaterno']."', amaterno = '".$datos['amaterno']."', email = '".$datos['email']."', 
 telefono_directo = '".$datos['telefono_directo']."', observaciones = '".$datos['observaciones']."', celular = '".$datos['celular']."', foto = 'foto2'
  WHERE id_miembro = '".$datos['id_miembro']."';";
 

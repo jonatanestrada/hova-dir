@@ -8,7 +8,7 @@ class Puesto{
 var $db;
 
 function __construct() {
-       $this->db = 'directorio_v2';
+       $this->db = 'directorio';
    }
 
 public function add( $datos ){	
