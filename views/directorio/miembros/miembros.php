@@ -37,9 +37,9 @@
 			
 			<style>
 			
-/*tbody {
+tbody {
     display:block;
-    height:200px;
+    height:600px;
     overflow:auto;
 }
 thead, tbody tr {
@@ -50,7 +50,7 @@ thead, tbody tr {
 }
 thead {
     width: calc( 100% - 1em )
-}*/
+}
 
 			
 			</style>
@@ -68,7 +68,7 @@ thead {
 				  <th>Antigüedad</th>
                   <th>Tel</th>
                   <th style='text-align: center;'>Email</th>
-				  <th>Action</th>
+				  <th style='text-align: center;'>Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -81,7 +81,7 @@ thead {
 				  <td>{{m.years_a}} a&ntilde;os {{m.months_a}} meses</td>
                   <td>{{m.telefono_directo.replace("N/A", ""); }}</td>
                   <td style='text-align: right;'>{{m.email.replace("N/A", "");}}</td>
-				  <td>
+				  <td style='padding-left: 60px;'>
 						<img ng-show='m.active==1' src='/img/pencil.png' ng-click='edit(m)' data-toggle="modal" data-target="#myModal" class='btnImg' >
 						<img ng-show='m.active==1' src='/img/clock.png' ng-click='horariosMiembro(m)' data-toggle="modal" data-target="#modalHorarios" class='btnImg'>
 						<img ng-show='m.active==1' src='/img/user_delete_2.png' ng-click='darDeBajaEmpleado(m)' data-toggle="modal" data-target="#modalDarDeBaja" class='btnImg'>
