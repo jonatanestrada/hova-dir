@@ -6,7 +6,7 @@
 				
 				<div class="input-group">
 					<span class="input-group-addon">
-						<input type="checkbox" id="preferencia_nombre" ng-model="formData.preferencia_nombre" ng-checked="formData.preferencia_nombre == 1">
+						<input type="checkbox" id="preferencia_nombre" ng-model="formData.preferencia_nombre" ng-checked="formData.preferencia_nombre == 1" ng-true-value="1" ng-false-value="0">
 					</span>
 					<input type="nombre" class="form-control" id="nombre" ng-model="formData.nombre" placeholder="Nombre" ng-required='!formData.nombre'>
 				</div>
@@ -19,7 +19,7 @@
 				
 				<div class="input-group">
 					<span class="input-group-addon">
-						<input type="checkbox" id="preferencia_nombre_sec" ng-model="formData.preferencia_nombre_sec" ng-checked="formData.preferencia_nombre_sec == 1">
+						<input type="checkbox" id="preferencia_nombre_sec" ng-model="formData.preferencia_nombre_sec" ng-checked="formData.preferencia_nombre_sec == 1" ng-true-value="1" ng-false-value="0">
 					</span>
 				
 					<input type="nombre_sec" class="form-control" id="nombre_sec" ng-model="formData.nombre_sec" placeholder="Segundo nombre">
