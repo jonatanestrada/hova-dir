@@ -16,7 +16,7 @@ public function addMiembro( $datos ){
 	//var_dump($fn);
 	//$fecha_nacimiento = $fn[2].'-'.$fn[0].'-'.$fn[1].' 00:00:00';
 	//echo "$d, $m, $y";
-	$fecha_nacimiento = $datos['fecha_nacimiento'] == '' ? "NULL" : "'".datos['fecha_nacimiento'].' 00:00:00'."'";
+	$fecha_nacimiento = $datos['fecha_nacimiento'] == '' ? "NULL" : "'".$datos['fecha_nacimiento'].' 00:00:00'."'";
 	$fecha_ingreso = $datos['fecha_ingreso'] == '' ? 'CURRENT_TIMESTAMP' : "'".$datos['fecha_ingreso'].' 00:00:00'."'";
 	
 	$datos['nombre_sec'] = isset($datos['nombre_sec']) ? $datos['nombre_sec'] : '';
@@ -261,7 +261,7 @@ public function editMiembro( $datos ){
 	//$fecha_nacimiento = $datos['fecha_nacimiento'] == '' ? '' : $datos['fecha_nacimiento'].' 00:00:00';
 	//$fecha_ingreso = $datos['fecha_ingreso'] == '' ? '' : $datos['fecha_ingreso'].' 00:00:00';
 	
-	$fecha_nacimiento = $datos['fecha_nacimiento'] == '' ? "NULL" : "'".datos['fecha_nacimiento'].' 00:00:00'."'";
+	$fecha_nacimiento = $datos['fecha_nacimiento'] == '' ? "NULL" : "'".$datos['fecha_nacimiento'].' 00:00:00'."'";
 	$fecha_ingreso = $datos['fecha_ingreso'] == '' ? 'CURRENT_TIMESTAMP' : "'".$datos['fecha_ingreso'].' 00:00:00'."'";
 	
 
