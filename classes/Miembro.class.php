@@ -17,7 +17,7 @@ public function addMiembro( $datos ){
 	//$fecha_nacimiento = $fn[2].'-'.$fn[0].'-'.$fn[1].' 00:00:00';
 	//echo "$d, $m, $y";
 	$fecha_nacimiento = $datos['fecha_nacimiento'] == '' ? "NULL" : "'".datos['fecha_nacimiento'].' 00:00:00'."'";
-	$fecha_ingreso = $datos['fecha_ingreso'] == '' ? '' : $datos['fecha_ingreso'].' 00:00:00';
+	$fecha_ingreso = $datos['fecha_ingreso'] == '' ? 'NULL' : "'".$datos['fecha_ingreso'].' 00:00:00'."'";
 	
 	$datos['nombre_sec'] = isset($datos['nombre_sec']) ? $datos['nombre_sec'] : '';
 	$datos['observaciones'] = isset($datos['observaciones']) ? $datos['observaciones'] : '';
@@ -25,7 +25,7 @@ public function addMiembro( $datos ){
 	$datos['celular'] = isset($datos['celular']) ? $datos['celular'] : '';
 
 	$sql = "INSERT INTO miembros (id_puesto, nombre, nombre_sec, apaterno, amaterno, email, telefono_directo, observaciones, celular, foto, fecha_nacimiento, fecha_ingreso, active) 
-	VALUES ('0', '".$datos['nombre']."', '".$datos['nombre_sec']."', '".$datos['apaterno']."', '".$datos['amaterno']."', '".$datos['email']."', '".$datos['telefono_directo']."', '".$datos['observaciones']."', '".$datos['celular']."', 'foto', ".$fecha_nacimiento.", '".$fecha_ingreso."', '1');";
+	VALUES ('0', '".$datos['nombre']."', '".$datos['nombre_sec']."', '".$datos['apaterno']."', '".$datos['amaterno']."', '".$datos['email']."', '".$datos['telefono_directo']."', '".$datos['observaciones']."', '".$datos['celular']."', 'foto', ".$fecha_nacimiento.", ".$fecha_ingreso.", '1');";
 //echo $sql;
   DBO::select_db($this->db);
   
