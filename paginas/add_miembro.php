@@ -60,15 +60,43 @@ include_once '../../conf.php'
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="<?php echo $url_server; ?>/lib/jquery-3.1.1.min.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.min.js"></script>
-<script>
-    $('.datepick').datepicker({
-
-	        format: "yyyy-mm-dd",
-        autoclose: true,
-        todayHighlight: true
-	});
-</script>
+ <link rel="stylesheet" href="/lib/jqueryui_1_10_2/jquery-ui.css">
+  <script src="/lib/jqueryui_1_10_2/jquery-ui.js"></script>
+  
+    <script>
+  $( function() {
+	  $.datepicker.regional['es'] = {
+ closeText: 'Cerrar',
+ prevText: '< Ant',
+ nextText: 'Sig >',
+ currentText: 'Hoy',
+ monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+ monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+ dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+ dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+ dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+ weekHeader: 'Sm',
+ dateFormat: 'dd/mm/yy',
+ firstDay: 1,
+ isRTL: false,
+ showMonthAfterYear: false,
+ yearSuffix: ''
+ };
+ $.datepicker.setDefaults($.datepicker.regional['es']);
+    $( ".datepick" ).datepicker({
+  dateFormat: "yy-mm-dd",
+  changeYear: true,
+  changeMonth: true,
+  defaultDate: "-18y"
+});
+  } );
+  </script>
+  
+  	<script>
+		$(document).ready(function(){
+			$('#ver > option[value="1"]').attr('selected', 'selected');
+		});
+	</script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="<?php echo $url_server; ?>/lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->

@@ -27,12 +27,7 @@
 	<div class="form-group">
 		<label for="fecha_nacimiento">Fecha de nacimiento</label>
 		  
-		<div class="input-group date" data-provide="datepicker">
 			<input data-provide="datepicker" type="text" class="form-control datepick" ng-model="formData.fecha_nacimiento" name='fecha_nacimiento' id='fecha_nacimiento' placeholder='Fecha de nacimiento'>
-			<div class="input-group-addon">
-				<span class="glyphicon glyphicon-calendar"></span>
-			</div>
-		</div>
 		  
 		<div ng-show="saveMiembro.$submitted || saveMiembro.fecha_nacimiento.$touched">
 		  <div ng-show="saveMiembro.fecha_nacimiento.$error.required">Este es un campo requerido.</div>

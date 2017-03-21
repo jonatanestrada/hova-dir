@@ -11,6 +11,9 @@
 			<a href='agregar' style='float:right;margin-right: 5px;' ><img src='/img/plus.png'></a>
 			<br><br>
 			
+			
+			
+			
 		   <div class="row">
 				<div class="col-xs-6">
 				  <div class="form-group">

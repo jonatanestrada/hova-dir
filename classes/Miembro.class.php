@@ -12,10 +12,11 @@ function __construct() {
    }
 
 public function addMiembro( $datos ){
-	$fn = explode("/", $datos['fecha_nacimiento']);
+	//$fn = explode("/", $datos['fecha_nacimiento']);
 	//var_dump($fn);
-	$fecha_nacimiento = $fn[2].'-'.$fn[0].'-'.$fn[1].' 00:00:00';
+	//$fecha_nacimiento = $fn[2].'-'.$fn[0].'-'.$fn[1].' 00:00:00';
 	//echo "$d, $m, $y";
+	$fecha_nacimiento = $datos['fecha_nacimiento'].' 00:00:00';
 	
 	$datos['nombre_sec'] = isset($datos['nombre_sec']) ? $datos['nombre_sec'] : '';
 	$datos['observaciones'] = isset($datos['observaciones']) ? $datos['observaciones'] : '';
@@ -256,8 +257,9 @@ public function editMiembro( $datos ){
 	/*$fn = explode("/", $datos['fecha_nacimiento']);
 	var_dump($fn);
 	$fecha_nacimiento = $fn[0].'-'.$fn[1].'-'.$fn[2].' 00:00:00';*/
+	$fecha_nacimiento = $datos['fecha_nacimiento'].' 00:00:00';
 
-	$sql = "UPDATE miembros SET nombre = '".$datos['nombre']."', nombre_sec = '".$datos['nombre_sec']."', apaterno = '".$datos['apaterno']."', amaterno = '".$datos['amaterno']."', email = '".$datos['email']."', 
+	$sql = "UPDATE miembros SET fecha_nacimiento = '".$fecha_nacimiento."', nombre = '".$datos['nombre']."', nombre_sec = '".$datos['nombre_sec']."', apaterno = '".$datos['apaterno']."', amaterno = '".$datos['amaterno']."', email = '".$datos['email']."', 
 telefono_directo = '".$datos['telefono_directo']."', observaciones = '".$datos['observaciones']."', celular = '".$datos['celular']."', foto = 'foto2'
  WHERE id_miembro = '".$datos['id_miembro']."';";
 
@@ -311,7 +313,7 @@ public function listMiembros( $datos, $paginacion = 1 ){
   //return Response::$data->result = DBO::getArray($sql); TIMESTAMPDIFF(YEAR, fecha_nacimiento, CURDATE())
 	$db = $this->db;
 	$sql = "SELECT m.*, REPLACE(CONCAT_WS(' ', m.nombre, m.nombre_sec, m.apaterno, m.amaterno) ,'N/A','') AS nombre2, 
-	DATE_FORMAT(m.fecha_nacimiento,'%m-%d-%Y') AS fecha_nacimiento, TIMESTAMPDIFF(YEAR, m.fecha_nacimiento, CURDATE()) AS edad,
+	DATE_FORMAT(m.fecha_nacimiento,'%Y-%m-%d') AS fecha_nacimiento, TIMESTAMPDIFF(YEAR, m.fecha_nacimiento, CURDATE()) AS edad,
 	TIMESTAMPDIFF(YEAR,m.fecha_ingreso,CURDATE()) AS years_a, ((TIMESTAMPDIFF(MONTH,m.fecha_ingreso,CURDATE())) - (TIMESTAMPDIFF(YEAR,m.fecha_ingreso,CURDATE()) * 12) ) AS months_a,
     cp.nombre AS puesto, p.id_descripcion,
     (SELECT REPLACE(CONCAT_WS(' ', cps.nombre, '-', ms.nombre, ms.nombre_sec, ms.apaterno, ms.amaterno) ,'N/A','') FROM miembros ms 
