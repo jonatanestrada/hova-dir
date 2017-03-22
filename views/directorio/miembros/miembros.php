@@ -38,18 +38,18 @@
 			
 			<style>
 			
-tbody {
+.x tbody {
     display:block;
     height:600px;
     overflow:auto;
 }
-thead, tbody tr {
+.x thead, .x tbody tr {
     display:table;
     width:100%;
     table-layout:fixed;
 	 overflow:auto;
 }
-thead {
+.x thead {
     width: calc( 100% - 1em )
 }
 
