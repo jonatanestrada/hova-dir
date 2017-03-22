@@ -341,7 +341,10 @@ public function listMiembros( $datos, $paginacion = 1 ){
 	FROM miembros m
     LEFT JOIN puestos p ON p.id_puesto = m.id_puesto
     LEFT JOIN cat_puestos cp ON cp.id = p.id_nombrePuesto
-	WHERE m.active = '".$statusEmpleado."' $sinPuesto  AND REPLACE(CONCAT_WS(' ', m.nombre, m.nombre_sec, m.apaterno, m.amaterno) ,'N/A','') LIKE '%".$n."%'
+	WHERE m.active = '".$statusEmpleado."' $sinPuesto  AND REPLACE(CONCAT_WS(' ', m.nombre, m.nombre_sec, m.apaterno, m.amaterno) ,'N/A','') LIKE '%".$n."%' OR
+	m.id_miembro = '".$n."' 
+	OR cp.nombre LIKE '%".$n."%'
+	
 	ORDER BY m.id_miembro";
 	if( $paginacion == 1 )
 		return Response::$data->result = Paginacion::getPaginacion( $sql, $db, $page, 3, 100 );

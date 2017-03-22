@@ -11,7 +11,7 @@ app.controller('AddPuestoCntroller', function($scope, $http){
 	
 	$http({
       method: 'GET',
-      url: 'api/index.php?url=getDataAddPuesto'
+      url: '../../api/index.php?url=getDataAddPuesto'
    }).then(function (response){
 		console.log(response.data);
 		$scope.catPuestos = response.data.catPuestos;
@@ -36,7 +36,7 @@ app.controller('AddPuestoCntroller', function($scope, $http){
 			$('#btnSubmit').attr('disabled',true);
 			$http({
 			  method: 'POST',
-			  url: 'api/index.php?url=addPuesto',
+			  url: '../../api/index.php?url=addPuesto',
 			  data: $scope.formData
 		   }).then(function (response){
 				console.log(response);
