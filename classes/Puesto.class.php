@@ -126,9 +126,10 @@ public function listCatPuestos(){
 
 public function listSubordinados( $data ){
   $sql = "SELECT p.*, (SELECT REPLACE(CONCAT_WS(' ', m.nombre, m.nombre_sec, m.apaterno, m.amaterno) ,'N/A','') FROM miembros m WHERE m.id_miembro = p.id_miembro  ) AS nombre,
-			cp.nombre as puesto
+			cp.nombre as puesto, c.nombre AS clave_cat
 			FROM puestos p
 			INNER JOIN cat_puestos cp ON cp.id = p.id_nombrePuesto
+			INNER JOIN claves c ON c.id_clave = p.id_clave
 
 WHERE p.id_puesto_superior =  '".$data['id']."';";
 		

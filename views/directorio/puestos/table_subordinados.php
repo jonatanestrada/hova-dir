@@ -5,6 +5,7 @@
 			<tr>
 			  <th>ID</th>
 			  <th>Posici&oacute;n</th>
+			  <th>Clave</th>
 			  <th>Nombre</th>
 			</tr>
 		  </thead>
@@ -12,6 +13,7 @@
 			<tr ng-repeat="s in subordinados">
 			  <td>{{s.id_puesto}}</td>
 			  <td>{{s.puesto}}</td>
+			  <td>{{s.clave_cat}}</td>
 			  <td>{{s.nombre}}</td>
 			  
 			</tr>
