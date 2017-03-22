@@ -29,6 +29,7 @@
 					  
 					  <select id='ver' class="form-control"  ng-change="load(1, nameSearch, statusEmpleado)" ng-model="statusEmpleado" >
 						<option value='1' >Activos</option>
+						<option value='2' >Inactivos</option>
 						<option value='0'>Dados de baja</option>
 					  </select>
 					</div>
@@ -57,7 +58,7 @@ thead {
 			
 			
 			<div class="table-responsive">
-            <table class="table table-striped ">
+            <table class="table table-striped x">
               <thead>
                 <tr>
                   <th>ID</th>
