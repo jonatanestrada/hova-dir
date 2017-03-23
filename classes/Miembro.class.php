@@ -1,5 +1,6 @@
 <?php
-include_once "../../sistema/api/v1/conexion.php";
+error_reporting(E_ALL & ~E_NOTICE);
+define(ROOT_DIR, $_SERVER['DOCUMENT_ROOT']);
 include_once "../../sistema/class/Usuarios.class.php";
 include_once "base.api.php";
 include_once "Paginacion.class.php";
