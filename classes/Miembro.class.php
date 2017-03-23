@@ -1,10 +1,6 @@
 <?php
 error_reporting(E_ALL & ~E_NOTICE);
-define(ROOT_DIR, $_SERVER['DOCUMENT_ROOT']);
-if( $_SERVER['HTTP_HOST'] == 'localhost' ){
-	include_once "../../sistema/class/Usuarios.class.php";
-	$Usuarios = new Usuarios();
-}
+
 include_once "base.api.php";
 include_once "Paginacion.class.php";
 
@@ -15,13 +11,18 @@ var $idUser;
 
 function __construct() {
        $this->db = 'directorio';
-	   
-	   if( $_SERVER['HTTP_HOST'] == 'localhost' ){
-	$Usuarios = new Usuarios();
-}
-	   
-	   $this->idUser = $Usuarios->getUserID();
+	   $this->idUser = $this->getUserID();
    }
+   
+private function getUserID()
+  {
+    @session_start();
+    if(isset($_SESSION['portal_usuario_id']))
+      return $_SESSION['portal_usuario_id'];
+    if(isset($_SESSION['MM_UserID']))
+      return $_SESSION['MM_UserID'];
+	  return 1;
+  }
 
 public function addMiembro( $datos ){
 	//$fn = explode("/", $datos['fecha_nacimiento']);
