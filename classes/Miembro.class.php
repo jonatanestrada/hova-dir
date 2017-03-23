@@ -6,9 +6,11 @@ include_once "Paginacion.class.php";
 class Miembro{
 
 var $db;
+var $idUser;
 
 function __construct() {
        $this->db = 'directorio';
+	   $this->idUser = 5;
    }
 
 public function addMiembro( $datos ){
@@ -26,8 +28,8 @@ public function addMiembro( $datos ){
 	$preferencia_nombre = isset($datos['preferencia_nombre']) && $datos['preferencia_nombre'] == 1 ? 1 : 0;
 	$preferencia_nombre_sec = isset($datos['preferencia_nombre_sec']) && $datos['preferencia_nombre_sec'] == 1 ? 1 : 0;	
 
-	$sql = "INSERT INTO miembros ( sexo, preferencia_nombre_sec, preferencia_nombre, id_puesto, nombre, nombre_sec, apaterno, amaterno, email, telefono_directo, observaciones, celular, foto, fecha_nacimiento, fecha_ingreso, active) 
-	VALUES ( '".$datos['sexo']."', '".$preferencia_nombre_sec."', '".$preferencia_nombre."', '0', '".$datos['nombre']."', '".$datos['nombre_sec']."', '".$datos['apaterno']."', '".$datos['amaterno']."', '".$datos['email']."', '".$datos['telefono_directo']."', '".$datos['observaciones']."', '".$datos['celular']."', 'foto', ".$fecha_nacimiento.", ".$fecha_ingreso.", '1');";
+	$sql = "INSERT INTO miembros ( user_update, sexo, preferencia_nombre_sec, preferencia_nombre, id_puesto, nombre, nombre_sec, apaterno, amaterno, email, telefono_directo, observaciones, celular, foto, fecha_nacimiento, fecha_ingreso, active) 
+	VALUES ( '".$this->idUser."', '".$datos['sexo']."', '".$preferencia_nombre_sec."', '".$preferencia_nombre."', '0', '".$datos['nombre']."', '".$datos['nombre_sec']."', '".$datos['apaterno']."', '".$datos['amaterno']."', '".$datos['email']."', '".$datos['telefono_directo']."', '".$datos['observaciones']."', '".$datos['celular']."', 'foto', ".$fecha_nacimiento.", ".$fecha_ingreso.", '1');";
 //echo $sql;
   DBO::select_db($this->db);
   
@@ -268,7 +270,7 @@ public function editMiembro( $datos ){
 	$preferencia_nombre = $datos['preferencia_nombre'] == 1 ? 1 : 0;
 	$preferencia_nombre_sec = $datos['preferencia_nombre_sec'] == 1 ? 1 : 0;	
 
-	$sql = "UPDATE miembros SET sexo = '".$datos['sexo']."', preferencia_nombre_sec = '".$preferencia_nombre_sec."', preferencia_nombre = '".$preferencia_nombre."', fecha_ingreso = ".$fecha_ingreso.", fecha_nacimiento = ".$fecha_nacimiento.", nombre = '".$datos['nombre']."', nombre_sec = '".$datos['nombre_sec']."', apaterno = '".$datos['apaterno']."', amaterno = '".$datos['amaterno']."', email = '".$datos['email']."', 
+	$sql = "UPDATE miembros SET fecha_update = CURRENT_TIMESTAMP, user_update = '".$this->idUser."', sexo = '".$datos['sexo']."', preferencia_nombre_sec = '".$preferencia_nombre_sec."', preferencia_nombre = '".$preferencia_nombre."', fecha_ingreso = ".$fecha_ingreso.", fecha_nacimiento = ".$fecha_nacimiento.", nombre = '".$datos['nombre']."', nombre_sec = '".$datos['nombre_sec']."', apaterno = '".$datos['apaterno']."', amaterno = '".$datos['amaterno']."', email = '".$datos['email']."', 
 telefono_directo = '".$datos['telefono_directo']."', observaciones = '".$datos['observaciones']."', celular = '".$datos['celular']."', foto = 'foto2'
  WHERE id_miembro = '".$datos['id_miembro']."';";
 
