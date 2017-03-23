@@ -12,7 +12,7 @@ include_once '../../conf.php'
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>Dashboard Template for Bootstrap</title>
+    <title>Agregar Puesto</title>
 
     <!-- Bootstrap core CSS -->
     <link href="<?php echo $url_server; ?>/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">

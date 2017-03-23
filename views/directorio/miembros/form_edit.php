@@ -37,6 +37,18 @@
 			  </div>		  
 			  
 			  
+			<div class="form-group">
+			  <label for="sexo">Sexo:</label>
+			  <select class="form-control" id="sexo" name="sexo" ng-model="formData.sexo" required="" >
+				  <option value="" >Selecciona una opci&oacute;n</option>
+				  <option value="H" >Hombre</option>
+				  <option value="M" >Mujer</option>
+			  </select>	  
+				<div ng-show="saveMiembro.$submitted || saveMiembro.sexo.$touched">
+				  <div ng-show="saveMiembro.sexo.$error.required">Este es un campo requerido.</div>
+				</div>	  
+			</div>
+			  
 	<div class="form-group">
 		<label for="fecha_nacimiento">Fecha de nacimiento</label>
 		  
