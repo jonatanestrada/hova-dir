@@ -146,44 +146,50 @@ app.controller('DirectorioCntroller', function($scope, $http){
 		$scope.formData.t_end = '';
 	}
 	
-	$scope.submitFormDarDeBaja = function(){
+	$scope.submitFormDarDeBaja = function( formValid ){
 	//console.log('Baja');
-		$http({
-		  method: 'POST',
-		  url: '../api/index.php?url=darDeBaja',
-		  data: $scope.formData
-	   }).then(function (response){
-			console.log(response);
-			
-			load( $scope.noPage, '' );
-			//console.log('Entro');
-			$('#modalDarDeBaja').modal('toggle');
-			alert( 'Se dio de baja exitosamente.' )
-			//$scope.personas.push($scope.newPersona);
-			//$scope.newPersona = {};
-	   },function (error){
-			console.log(error);
-	   });
+	if(formValid)
+		{		
+			$http({
+			  method: 'POST',
+			  url: '../api/index.php?url=darDeBaja',
+			  data: $scope.formData
+		   }).then(function (response){
+				console.log(response);
+				
+				load( $scope.noPage, '' );
+				//console.log('Entro');
+				$('#modalDarDeBaja').modal('toggle');
+				alert( 'Se dio de baja exitosamente.' )
+				//$scope.personas.push($scope.newPersona);
+				//$scope.newPersona = {};
+		   },function (error){
+				console.log(error);
+		   });
+	   }
    }
    
-   	$scope.submitBajaPortalForm = function(){
+   	$scope.submitBajaPortalForm = function( formValid ){
 	//console.log('submitBajaPortalForm');
-		$http({
-		  method: 'POST',
-		  url: '../api/index.php?url=bajaPortal',
-		  data: $scope.formData
-	   }).then(function (response){
-			console.log(response);
-			
-			load( $scope.noPage, '' );
-			//console.log('Entro');
-			$('#modalBajaPortal').modal('toggle');
-			alert( 'Se dio de baja exitosamente.' )
-			//$scope.personas.push($scope.newPersona);
-			//$scope.newPersona = {};
-	   },function (error){
-			console.log(error);
-	   });
+	if(formValid)
+		{	
+			$http({
+			  method: 'POST',
+			  url: '../api/index.php?url=bajaPortal',
+			  data: $scope.formData
+		   }).then(function (response){
+				console.log(response);
+				
+				load( $scope.noPage, '' );
+				//console.log('Entro');
+				$('#modalBajaPortal').modal('toggle');
+				alert( 'Se dio de baja exitosamente.' )
+				//$scope.personas.push($scope.newPersona);
+				//$scope.newPersona = {};
+		   },function (error){
+				console.log(error);
+		   });
+		}
    }
 	
 	

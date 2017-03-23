@@ -41,12 +41,15 @@
 			  
 			<div class="form-group">
 			  <label for="comment">Motivo de la baja:</label>
-			  <textarea class="form-control" rows="5" id="motivo" name="motivo" ng-model="formData.motivo" ></textarea>
+			  <textarea class="form-control" rows="5" id="motivo" name="motivo" ng-model="formData.motivo" required=""></textarea>
+		  		<div ng-show="saveMiembro.$submitted || saveMiembro.motivo.$touched">
+				  <div ng-show="saveMiembro.motivo.$error.required">Este es un campo requerido.</div>
+				</div>
 			</div>			  
 			  
 		<div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-		  <button type="submit" class="btn btn-default" ng-click="submitFormDarDeBaja()">Dar de baja empleado</button>
+		  <button type="submit" class="btn btn-default" ng-click="submitFormDarDeBaja( saveMiembro.$valid )">Dar de baja empleado</button>
         </div>			  
 
 			</form>
