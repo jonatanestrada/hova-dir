@@ -16,6 +16,10 @@ var $idUser;
 function __construct() {
        $this->db = 'directorio';
 	   
+	   if( $_SERVER['HTTP_HOST'] == 'localhost' ){
+	$Usuarios = new Usuarios();
+}
+	   
 	   $this->idUser = $Usuarios->getUserID();
    }
 
