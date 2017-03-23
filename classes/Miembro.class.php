@@ -1,5 +1,6 @@
 <?php
 include_once "../../sistema/api/v1/conexion.php";
+include_once "../../sistema/class/Usuarios.class.php";
 include_once "base.api.php";
 include_once "Paginacion.class.php";
 
@@ -10,7 +11,8 @@ var $idUser;
 
 function __construct() {
        $this->db = 'directorio';
-	   $this->idUser = 5;
+	   $Usuarios = new Usuarios();
+	   $this->idUser = $Usuarios->getUserID();
    }
 
 public function addMiembro( $datos ){
