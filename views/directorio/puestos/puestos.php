@@ -40,8 +40,8 @@
                   <td>{{m.nombre}}</td>
 				  <td><a href="#" data-toggle="tooltip" title="{{m.responde_a.toString().split(' - ')[1]}}">{{m.responde_a.toString().split(" - ")[0]}}</a></td>
 				  <td>
-				  {{m.nombre_empleado}}
-				  <label ng-show='!m.nombre_empleado'>VACANTE</label>
+				  <span ng-show='m.id_miembro != 0'>{{m.nombre_empleado}}</span>
+				  <label ng-show='m.id_miembro == 0'>VACANTE</label>
 				  </td>
                   <td>{{m.proyecto}}</td>
                   <td>{{m.clave}}</td>

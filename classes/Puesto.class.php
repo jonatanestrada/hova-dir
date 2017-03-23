@@ -46,7 +46,7 @@ private function logBajaPuesto( $id_puesto, $id_miembro, $motivo ){
 	$this->addlogPuestos( $id_puesto, $id_miembro, 0, $motivo );
 }
 
-private function addlogPuestos( $id_puesto, $id_miembro, $tipo, $descripcion ){
+private function addlogPuestos( $id_puesto, $id_miembro, $tipo, $descripcion = '' ){
 	$sql = "INSERT INTO logs_puestos ( id_puesto, id_miembro, tipo, descripcion ) VALUES ('".$id_puesto."', '".$id_miembro."', '".$tipo."', '".$descripcion."');";
 
 	DBO::select_db($this->db);

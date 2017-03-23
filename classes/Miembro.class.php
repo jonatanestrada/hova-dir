@@ -1,5 +1,10 @@
 <?php
 error_reporting(E_ALL & ~E_NOTICE);
+define(ROOT_DIR, $_SERVER['DOCUMENT_ROOT']);
+if( $_SERVER['HTTP_HOST'] == 'localhost' ){
+	include_once "../../sistema/class/Usuarios.class.php";
+	$Usuarios = new Usuarios();
+}
 include_once "base.api.php";
 include_once "Paginacion.class.php";
 
@@ -10,7 +15,7 @@ var $idUser;
 
 function __construct() {
        $this->db = 'directorio';
-	   //$Usuarios = new Usuarios();
+	   
 	   $this->idUser = $Usuarios->getUserID();
    }
 
