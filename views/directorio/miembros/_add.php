@@ -2,7 +2,7 @@
 <html ng-app="app">
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <title>AngularJS fileupload33s</title>
+  <title>AngularJS fileupload</title>
 </head>
     <body>
         <div data-ng-controller="HomeCtrl">
