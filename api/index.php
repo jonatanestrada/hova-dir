@@ -746,7 +746,7 @@ $_POST = array_merge( $_POST, $a);
        //$nombre = $this->datosPeticion['nombre'];  
        
 	   $p = $puesto->deleteMiembroPuesto( $data );
-	   $m = $miembro->deletePuestoPuesto( $data );
+	   //$m = $miembro->deletePuestoPuesto( $data );
 	   $m = $miembro->darDeBaja( $data );
 	   
 	   if ( 1 /*!$this->existeUsuario($email)*/) {  
